@@ -1,7 +1,5 @@
 # ![GA Logo](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Express Creatures CRUD
 
----
-
 ## Prereqs:
 
 * Layouts and Controllers
@@ -28,29 +26,28 @@ example prehistoric_creature:
 
 ### User Stories
 
-* As a user, I want to see all prehistoric creatures and their images listed at once
+* As a user, I want to see all prehistoric creatures listed at once
+* As a user, I want to see the details and image of prehistoric creature
 * As a user, I want to use a form and add a prehistoric creature
-* As a user, I want to see the details about one prehistoric creature
-* As a user, I want to edit a prehistoric creature
 * As a user, I want to use a form and edit a prehistoric creature
 * As a user, I want to delete a specific prehistoric creature
 
-Study the following RESTful routing table, you will need to implement the following routes and associated views:
+Study the following RESTful routing table, you will need to implement the following routes and associated views for prehistoric creatures:
 
-| VERB | URL pattern | Action \(CRUD\) | Description |
+| HTTP VERB | URL pattern | Action \(CRUD\) | Description |
 |------|-------------|-----------------|-------------|
-| GET | /prehistoric_creatures | Index \(Read\) | lists all prehistoric creatures |
-| GET | /prehistoric_creatures/new | New \(Read\) | shows a form to make a new prehistoric creature |
-| POST | /prehistoric_creatures | Create \(Create\) | creates an prehistoric creature with the POST payload(form) data |
-| GET | /prehistoric_creatures/:id | Show \(Read\) | list information about a specific prehistoric creature \(i.e. /prehistoric creatures/1\) |
-| GET | /prehistoric_creatures/edit/:id | Edit \(Read\) | shows a form for editing a specific prehistoric creatures \(i.e. /prehistoric_creatures/edit/1\) |
-| PUT | /prehistoric_creatures/:id | Update \(Update\) | updates the data for a specific prehistoric_creature \(i.e. /prehistoric creatures/1\) |
-| DELETE | /prehistoric_creatures/:id | Destroy \(Delete\) | deletes the prehistoric creature with the specified id \(i.e. /prehistoric creatures/1\) |
+| GET | `/prehistoric_creatures` | Index \(`READ`\) | lists all prehistoric creatures |
+| GET | `/prehistoric_creatures/new` | New \(`READ`\) | shows a form to make a new prehistoric creature |
+| POST | `/prehistoric_creatures` | Create \(`CREATE`\) | creates an prehistoric creature with the `POST` payload (form) data and `redirects` |
+| GET | `/prehistoric_creatures/:id` | Show \(`READ`\) | list information about a specific prehistoric creature \(i.e. `/prehistoric creatures/1`\) |
+| GET | `/prehistoric_creatures/edit/:id` | Edit \(`READ`\) | shows a form for editing a specific prehistoric creatures \(i.e. /`prehistoric_creatures/edit/1`\) |
+| PUT | `/prehistoric_creatures/:id` | Update \(`UPDATE`\) | updates the data for a specific prehistoric_creature \(i.e. `/prehistoric creatures/1`\) and `redirects` |
+| DELETE | `/prehistoric_creatures/:id` | Delete \(`DESTROY`\) | deletes the prehistoric creature with the specified id \(i.e. `/prehistoric creatures/1`\) and `redirects` |
 
 
 ## Getting Started
 
-Add a `prehistoric_creatures.json` to your dino CRUD app, this will serve as you mock database.
+Add a `prehistoric_creatures.json` to your dino CRUD app, this will serve as you mock `database model` for prehistoric creatures.
 
 ```json
 [
