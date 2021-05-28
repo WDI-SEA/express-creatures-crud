@@ -48,7 +48,7 @@ app.post('/dinosaurs', (req, res) => {
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 app.get('/dinosaurs/new', (req, res) => {
-    res.json({ msg: 'show form to add dino' })
+    res.render('dinosaurs/new.ejs')
 })
 
 // GET /dinosaurs/:id -- READ one specific dino
