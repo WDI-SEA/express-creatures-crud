@@ -58,12 +58,35 @@ app.get('/dinosaurs/:id', (req,res) => {
 app.get('/dinosaurs/edit/:id', (req,res) => {
     res.json({msg: `show form to edit dino ${req.params.id}`})
 })
+
 // PUT /dinosaurs/:id - UPDATE on dino - redirect to /dinosaurs/:id
+app.put('/dinosaurs/:id', (req,res) => {
+    // get dino data
+    const dinos = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinos)
+    // find fino from id and update
+    dinoData[req.params.id].name = req.body.name
+    dinoData[req.params.id].type = req.body.type
+    //write to file
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    // redirect to /dinosaurs
+    res.redirect('/dinosaurs')
+})
 
 // DELETE /dinosaurs/:id - DESTROY on specific dino
-
+app.delete('/dinosaurs/:id', (req,res) => {
+    // get our dino json
+    const dinos = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinos)
+    // remove one dino from array
+    dinoData.splice(req.params.id,1)
+    // write new file back
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    // redirect /dinosaurs
+    res.redirect('/dinosaurs')
+})
 // listen on a port
 app.listen(PORT, () => {
     console.log(`listening on :${PORT}`)
     rowdyResults.print()
-}) 
+})
