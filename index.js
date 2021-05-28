@@ -1,13 +1,17 @@
+// MODULE SETUP
 const express = require("express")
 const rowdy = require("rowdy-logger")
 const fs = require("fs")
 
+// MODULE IMPLEMENTATION
 const app = express()
 const rowdyResults = rowdy.begin(app)
 
+// OPTIONAL CONSTANTS
 const PORT = 7000
 const log = console.log
 
+// MIDDLEWARE
 app.use(express.urlencoded({extended:false}))
 
 // ROUTES
@@ -51,7 +55,7 @@ app.get("/dinosaurs/:id", (req, res) => {
     const dinoData = JSON.parse(dinosaurs)
     // look up one dino with req.param
     const dino = dinoData[req.params.id]
-    //send one dino back
+    // send one dino back
     res.json({dino})
 })
 
@@ -61,9 +65,33 @@ app.get("/dinosaurs/edit/:id", (req, res) => {
 })
 
 // PUT /dinosaurs/:id -- UPDATE (edit) info on one dino. -- redirect to /dinosaurs/:id OR /dinosaurs
+app.put("/dinosaurs/:id", (req, res) => {
+    // get dinosaurs.json
+    const dinosaurs = fs.readFileSync("./dinosaurs.json")
+    const dinoData = JSON.parse(dinosaurs)
+    // find one dino from req.params.id; use req.body to update
+    dinoData[req.params.id].name = req.body.name
+    dinoData[req.params.id].type = req.body.type
+    // write the json file
+    fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinoData))
+    // redirect to /dinosaurs
+    res.redirect("/dinosaurs")
+})
 
 // DELETE /dinosaurs/:id -- DELETE specified dino.
+app.delete("/dinosaurs/:id", (req, res) => {
+    // get dinosaurs.json
+    const dinosaurs = fs.readFileSync("./dinosaurs.json")
+    const dinoData = JSON.parse(dinosaurs)
+    // remove one dino from array
+    dinoData.splice(req.params.id, 1)
+    // save dinosaurs.json
+    fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinoData))
+    // redirect to /dinosaurs
+    res.redirect("/dinosaurs")
+})
 
+// LISTEN TO PORT
 app.listen(PORT, () => {
     rowdyResults.print()
     log(`${PORT}`)
