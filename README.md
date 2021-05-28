@@ -72,7 +72,11 @@ Add a `prehistoric_creatures.json` to your dino CRUD app, this will serve as you
 
 **Hint:** To make a `MVC REST API` you will need to reorganize your routes into controllers (one controller for dinosaurs and one controller for prehistoric creatures)
 
-**Hint:** Write out route backend API routes and test them with postman before you make your views.
+**Hint:** Stub out route backend API routes and test them with postman before you make your views.
+
+## Part 2
+
+For part 2 of this deliverable you will need to add views to your app.
 
 **Hint:** You will need to have two folders inside your `views` directory, one for `dinosaurs` and one for `prehistoric_creatures`. Make sure to change your `res.render()` statements accordingly!
 
