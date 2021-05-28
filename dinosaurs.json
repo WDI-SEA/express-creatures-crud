@@ -1,0 +1,22 @@
+[
+    {
+      "name":"Littlefoot",
+      "type":"apatosaurus"
+    },
+    {
+      "name":"Cera",
+      "type":"triceratops"
+    },
+    {
+      "name":"Ducky",
+      "type":"saurolophus"
+    },
+    {
+      "name":"Petrie",
+      "type":"pteranodon"
+    },
+    {
+      "name":"Spike",
+      "type":"stegosaurus"
+    }
+  ]
