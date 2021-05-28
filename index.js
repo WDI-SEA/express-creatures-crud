@@ -81,7 +81,23 @@ app.put('/dinosaurs/:id', (req, res) => {
     // redirect to /dinosaurs
     res.redirect('/dinosaurs')
 })
+
 // DELETE /dinosaurs/:id -- DESTROY one specific dino
+app.delete('/dinosaurs/:id', (req, res) => {
+    // get our dino json
+    const dinosaurs = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinosaurs)
+
+    // remove one dino form the array -- use req.params
+    dinoData.splice(req.params.id, 1)
+
+    // save dinosaurs.json
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+
+    // redirect to /dinosaurs
+    res.redirect('/dinosaurs')
+})
+
 
 //listen on a port
 app.listen(PORT, () => {
