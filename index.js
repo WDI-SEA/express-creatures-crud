@@ -2,17 +2,20 @@
 const express = require('express')
 const rowdy = require('rowdy-logger')
 const fs = require('fs')
+const layouts = require('express-ejs-layouts')
 
 //config app
 const PORT = 3000
 const app = express()
 const rowdyResults = rowdy.begin(app)
-//Allows use to POST with below
+app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(__dirname + '/public')) //where CSS will live
+app.use(layouts) //use ejs layouts
 
 //define routes
 app.get('/', (req, res) => {
-    res.json({ msg: 'hello dinos!'})
+    res.render('home')
 })
 
 
@@ -24,7 +27,7 @@ app.get('/dinosaurs', (req, res) => {
     const dinoData = JSON.parse(dinosaurs)
     console.log(dinoData)
     //send back the json
-    res.json({ dinoData })
+    res.render('dinosaurs/index.ejs', {dinoData: dinoData})
 })
 
 //POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs
@@ -46,7 +49,7 @@ app.post('/dinosaurs', (req, res) => {
 
 //GET /dinosaurs/new -- READ (show) a form to add dino
 app.get('/dinosaurs/new', (req, res) => {
-    res.json({ msg: 'show form to add a dino'})
+    res.render('dinosaurs/new.ejs')
 })
 
 //GET /dinosaurs/:id -- READ one specific dino
@@ -99,6 +102,8 @@ app.delete('/dinosaurs/:id', (req, res) => {
     //redirect to /dinosaurs
     res.redirect('/dinosaurs')
 })
+
+
 
 //Listen on PORT
 app.listen(PORT, ()=> {

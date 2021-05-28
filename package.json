@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/hamazumi/express-creatures-crud#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
     "rowdy-logger": "^1.0.2"
   }
 }
