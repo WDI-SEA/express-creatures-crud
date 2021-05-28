@@ -42,10 +42,23 @@ app.post('/dinosaurs', (req, res) => {
     res.redirect('/dinosaurs')
 })
 
-
 // GET /dinosaurs/new -- READ (show) a form to add a dino
+app.get('/dinosaurs/new', (req, res) => {
+    res.json({ msg: 'show form to add a dino '})
+})
 
 // GET /dinosaurs/:id -- READ one specific dino
+app.get('/dinosaurs/:id', (req, res) => {
+    // get our dino data
+    const dinosaurs = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinosaurs)
+
+    // look up one dino with the request parameters
+    const dino = dinoData[req.params.id]
+
+    // send one dino back
+    res.json({ dino })
+})
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino
 
