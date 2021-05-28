@@ -39,11 +39,25 @@ app.post('/dinosaurs', (req,res) => {
 })
 
 // GET /dinosaurs/new - READ a form to create a new dino
+app.get('/dinosaurs/new', (req,res) => {
+    res.json({msg: 'showform to add a dino'})
+})
 
 // GET /dinosaurs/:id - READ one specific dino
+app.get('/dinosaurs/:id', (req,res) => {
+    // get dino data
+    const dinos = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinos)
+    // look up one dino with the request param
+    const dino = dinoData[req.params.id]
+    // send on dino back
+    res.json({dino})
+})
 
 // GET /dinosaurs/edit/:id - READ a form to edit one dino
-
+app.get('/dinosaurs/edit/:id', (req,res) => {
+    res.json({msg: `show form to edit dino ${req.params.id}`})
+})
 // PUT /dinosaurs/:id - UPDATE on dino - redirect to /dinosaurs/:id
 
 // DELETE /dinosaurs/:id - DESTROY on specific dino
