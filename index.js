@@ -2,18 +2,22 @@
 const express = require('express')
 const rowdy = require('rowdy-logger')
 const fs = require('fs')
+const layouts = require('express-ejs-layouts')
 
 // config app
 const PORT = 3000
 const app = express()
 let rowdyResults = rowdy.begin(app)
+app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: false}))
+app.use(express.static(__dirname + '/public'))
+app.use(layouts)
 
 // define routes
 
 // GET /
 app.get('/', (req,res) => {
-    res.json({msg: 'hello dinos!'})
+    res.render('home')
 })
 
 // GET /dinosaurs - READ all dinos
@@ -85,6 +89,7 @@ app.delete('/dinosaurs/:id', (req,res) => {
     // redirect /dinosaurs
     res.redirect('/dinosaurs')
 })
+
 // listen on a port
 app.listen(PORT, () => {
     console.log(`listening on :${PORT}`)
