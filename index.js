@@ -61,6 +61,9 @@ app.get('/dinosaurs/:id', (req, res) => {
 })
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino
+app.get('/dinosaurs/edit/:id', (req, res) => {
+  res.json({ msg: `show form to edit dino ${req.params.id}` })
+})
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/:id
 
