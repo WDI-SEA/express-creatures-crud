@@ -1,0 +1,24 @@
+{
+  "name": "express-creatures-crud",
+  "version": "1.0.0",
+  "description": "## Prereqs:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpiralV/express-creatures-crud.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpiralV/express-creatures-crud/issues"
+  },
+  "homepage": "https://github.com/SpiralV/express-creatures-crud#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "rowdy-logger": "^1.0.2"
+  }
+}
