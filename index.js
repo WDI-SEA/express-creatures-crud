@@ -61,13 +61,30 @@ app.get('/dinosaurs/:id', (req, res) => {
 })
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino
+app.get('/dinosaurs/edit/:id', (req, res) => {
+    res.json({ msg: `show form to edit dino ${req.params.id}` })
+})
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/:id
+app.put('/dinosaurs/:id', (req, res) => {
+    // get the dino data from our json
+    const dinosaurs = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinosaurs)
 
+    //find one dino from the req.params.id and use the req body to update
+    dinoData[req.params.id].name = req.body.name
+    dinoData[req.params.id].type = req.body.type
+
+    // write the json file
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+
+    // redirect to /dinosaurs
+    res.redirect('/dinosaurs')
+})
 // DELETE /dinosaurs/:id -- DESTROY one specific dino
 
 //listen on a port
 app.listen(PORT, () => {
     rowdyResults.print()
-    console.log(`is that dinos i hear on port ${PORT}`)
+    console.log(`is that dinos i hear on port ${PORT}🦕`)
 })
