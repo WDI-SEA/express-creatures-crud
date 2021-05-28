@@ -33,15 +33,29 @@ app.post('/dinosaurs', (req, res) => {
     dinoData.push(req.body)
 
     //write the file
-    fs.writeFileSync('.dinosaurs.json', JSON.stringify(dinoData))
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
 
     //redirect to /dinosaurs
     res.redirect('/dinosaurs')
 })
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
+app.get('/dinosaurs/new', (req, res) => {
+    res.json({ msg: 'show form to add a dino'})
+})
 
 // GET /dinosaurs/:id -- READ one specific dino
+app.get('/dinosaurs/:id', (req, res) => {
+    //get dino data
+    const dinosaurs = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinosaurs)
+
+    //look up one dino with the request parameters 
+    const dino = dinoData[req.params.id]
+
+    //send one dino back
+    res.json({ dino })
+})
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino
 
