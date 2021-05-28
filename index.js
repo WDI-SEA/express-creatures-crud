@@ -8,6 +8,8 @@ const rowdyResults = rowdy.begin(app)
 const PORT = 7000
 const log = console.log
 
+app.use(express.urlencoded({extended:false}))
+
 // ROUTES
 app.get("/", (req, res) => {
     res.json({ msg: "Hello dinos!"})
@@ -22,11 +24,20 @@ app.get("/dinosaurs", (req, res) => {
     // send back the json
     res.json({dinoData})
 
-
-    // send back the json
 })
 
 // POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs
+app.post("/dinosaurs", (req, res) => {
+    // read dinosaurs.json
+    const dinosaurs = fs.readFileSync("./dinosaurs.json")
+    const dinoData = JSON.parse(dinosaurs)
+    // add data from request body to dinosaurs.json
+    dinoData.push(req.body)
+    // write file
+    fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinoData))
+    // redirect to /dinosaurs
+    res.redirect("./dinosaurs")
+})
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 
