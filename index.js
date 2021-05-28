@@ -3,16 +3,20 @@ const express = require('express')
 // rowdy logger for logging our routes
 const rowdy = require('rowdy-logger')
 const fs = require('fs')
+const layouts = require('express-ejs-layouts')
 
 // Config app
 const app = express()
 const rowdyResults = rowdy.begin(app)
 const PORT = 3000
+app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(__dirname + '/public')) // where CSS will live
+app.use(layouts) // use ejs layouts
 
 // define routes
 app.get('/', (req, res) => {
-    res.json({ msg: 'hello dinos!'})
+    res.render('home')
 })
 
 // GET /dinosaurs -- READ all dinos
@@ -22,7 +26,7 @@ app.get('/dinosaurs', (req, res) => {
     const dinoData = JSON.parse(dinosaurs)
     console.log(dinoData)
         // send back json
-    res.json({ dinoData })
+    res.render('dinosaurs/index.ejs', { dinoData })
 })
 
 // POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs
