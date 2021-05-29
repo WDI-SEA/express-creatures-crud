@@ -64,15 +64,17 @@ app.get('/dinosaurs/:id', (req, res) => {
     res.json({ dino })
 })
 
-// GET /dinosaurs/edit/:id -- READ (show) form to edit one dino -- to DISPLAY a FORM
-app.get('/dinosaurs/edit/:id', (req, res) =>{ // /edit/:id is cuz theres a dino/:id above
+// GET /dinosaurs/edit/:id -- READ (show) form to edit one dino -- to DISPLAY a FORM// /edit/:id is cuz theres a dino/:id above
+app.get('/dinosaurs/edit/:id', (req, res) => {
+    // get the dino info to populate the form
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
-
     const dino = dinoData[req.params.id]
     // render the template
     res.render('dinosaurs/edit.ejs', { dino: dino,  dinoId: req.params.id })
-})
+  })
+  
+  
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dinp --- redirect to /dinosaur/:id
 app.put('/dinosaurs/:id', (req, res) => {     //app.put works like app.post
