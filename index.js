@@ -121,16 +121,25 @@ app.delete('/dinosaurs/:id', (req, res) => {
 
 /////~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~
 
+app.get('/dinosaurs', (req, res) => {
+  // read the dino file
+  const dinosaurs = fs.readFileSync('./dinosaurs.json')
+  const dinoData = JSON.parse(dinosaurs)
+  console.log(dinoData)
+  // send back the json
+  res.render('dinosaurs/index.ejs', {dinoData: dinoData})
+})
+
 
 // GET /prehistoric-creatures -- READ all pcs ~~~~~~~~~
-app.get('/prehistoric_creatures', (req, res) => {
+app.get('/prehistoric-creatures', (req, res) => {
   // read the PC file
-  const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+  const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
   const pcData = JSON.parse(prehistoric)
   console.log(pcData)
   // send back the json
-  // res.render('prehistoric_creatures/index.ejs', {pcData: pcData})
-  res.json({ dinoData })
+  res.render('prehistoric-creatures/index.ejs', {pcData: pcData})
+  // res.json({ pcData })
 })
 
 
@@ -141,11 +150,11 @@ app.post('/prehistoric-creatures', (req, res) => {
   const pcData = JSON.parse(prehistoric)
 
   console.log(req.body)
-  // add data from the request body to the pc data
+  // add data from the request body to the pcnodata
   pcData.push(req.body)
 
   // write the file
-  fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(pcData))
+  fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData))
 
   // redirect to /prehistoric-creatures
   res.redirect('/prehistoric-creatures')
