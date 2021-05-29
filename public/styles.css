@@ -1,0 +1,33 @@
+* {
+    background-color: chartreuse;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#links {
+    text-align: left;
+    font-size: 14px;
+}
+
+#links:hover {
+    opacity: 70%;
+}
+
+#submit-box {
+    margin-top: 20px;
+}
+
+#submit-button {
+    background-color: crimson;
+    color: white;
+    border-radius: 10%;
+    font-size: 20px;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+}

@@ -1,22 +1,32 @@
+// APP SETUP ------------------------------------
+
 // MODULE SETUP
 const express = require("express")
 const rowdy = require("rowdy-logger")
 const fs = require("fs")
+const layouts = require("express-ejs-layouts")
+const methodOverride = require("method-override")
 
 // MODULE IMPLEMENTATION
 const app = express()
 const rowdyResults = rowdy.begin(app)
 
+// MIDDLEWARE
+app.set("view engine", "ejs")
+app.use(express.urlencoded({extended:false}))
+app.use(express.static(__dirname + "/public")) // where the css will live
+app.use(layouts)
+app.use(methodOverride("_method"))
+
 // OPTIONAL CONSTANTS
 const PORT = 7000
 const log = console.log
 
-// MIDDLEWARE
-app.use(express.urlencoded({extended:false}))
+// ROUTES ---------------------------------------
 
-// ROUTES
+// HOME
 app.get("/", (req, res) => {
-    res.json({ msg: "Hello dinos!"})
+    res.render("home.ejs")
 })
 
 // GET /dinosaurs -- READ (list) all dinos
@@ -26,7 +36,7 @@ app.get("/dinosaurs", (req, res) => {
     // parse json buffer
     const dinoData = JSON.parse(dinosaurs)
     // send back the json
-    res.json({dinoData})
+    res.render("dinosaurs/index.ejs", {dinoData})
 
 })
 
@@ -45,7 +55,7 @@ app.post("/dinosaurs", (req, res) => {
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 app.get("/dinosaurs/new", (req, res) => {
-    res.json({msg:"show form to add a dino"})
+    res.render("dinosaurs/new.ejs")
 })
 
 // GET /dinosaurs/:id -- READ (list) info on one dino.
@@ -61,7 +71,12 @@ app.get("/dinosaurs/:id", (req, res) => {
 
 // GET /dinosaurs/edit/:id -- READ (show) form for editing one dino.
 app.get("/dinosaurs/edit/:id", (req, res) => {
-    res.json({msg:"show form to edit a dino"})
+    // get dino info to populate the form
+    const dinosaurs = fs.readFileSync("./dinosaurs.json")
+    const dinoData = JSON.parse(dinosaurs)
+    const dino = dinoData[req.params.id]
+    // render the template
+    res.render("dinosaurs/edit.ejs", {dino: dino, dinoId: req.params.id})
 })
 
 // PUT /dinosaurs/:id -- UPDATE (edit) info on one dino. -- redirect to /dinosaurs/:id OR /dinosaurs
