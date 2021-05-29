@@ -132,7 +132,7 @@ app.post('/prehistoric_creatures', (req, res) => {
 
 //GET /prehistoric_creatures/new -- READ (show) a form to add a creature 
 app.get('/prehistoric_creatures/new', (req, res) => {
-    res.render('/prehistoric_creatures/new.ejs')
+    res.render('prehistoric_creatures/new.ejs')
 })
 
 //GET /prehistoric_creatures/:id -- READ one specific creature 
