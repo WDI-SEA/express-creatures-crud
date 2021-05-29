@@ -15,6 +15,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.static(__dirname + '/public')) // where the css will live
 app.use(layouts) // use ejs layouts
 // method override so we can put and delete
+
+// app.use('/dinosaurs', require('./controllers/dinosaurs'))//  <-- pulled from love it leave it
+// app.use('/prehistoric-creatures', require('./controllers/prehistoric-creatures')) //  <-- pulled from love it leave it
+
+
 app.use(methodOverride('_method'))
 
 
@@ -124,7 +129,8 @@ app.get('/prehistoric_creatures', (req, res) => {
   const pcData = JSON.parse(prehistoric)
   console.log(pcData)
   // send back the json
-  res.render('prehistoric_creatures/index.ejs', {pcData: pcData})
+  // res.render('prehistoric_creatures/index.ejs', {pcData: pcData})
+  res.json({ dinoData })
 })
 
 
