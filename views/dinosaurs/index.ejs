@@ -1,5 +1,8 @@
 <ul>
-    <% dinoData.forEach(dino => { %>
-        <li><%= dino.name %> is a <%= dino.type %></li>
+    <% dinoData.forEach((dino, index) => { %>
+        <li>
+            <%= dino.name %> is a <%= dino.type %>
+            <a href="/dinosaurs/edit/<%= index %>">Edit dino</a>
+        </li>
     <% }) %>
 </ul>
