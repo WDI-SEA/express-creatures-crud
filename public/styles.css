@@ -24,11 +24,8 @@ ul {
     margin: 10px;
 }
 
-#submit-box {
-    margin-top: 20px;
-}
-
-#edit-button, #submit-button {
+.submit-button {
+    margin: 5px;
     background-color: crimson;
     color: white;
     border-radius: 10%;
@@ -38,7 +35,7 @@ ul {
     width: 100px;
 }
 
-#edit-button {
+/* #edit-button {
     text-decoration: none;
     padding: 1px 25px 1px 25px;
     border-top: 2px solid rgb(118,118,118);
@@ -52,4 +49,4 @@ ul {
     border-right: 2px solid rgb(118,118,118);
     border-bottom: 2px solid rgb(118,118,118);
     border-left: 2px solid rgb(33,33,33);
-}
+} */
