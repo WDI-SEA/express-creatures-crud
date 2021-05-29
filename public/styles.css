@@ -18,6 +18,12 @@ ul {
     opacity: 70%;
 }
 
+#edit-button {
+    border: 2px solid black;
+    color: black;
+    font-size: 14px;
+}
+
 #submit-box {
     margin-top: 20px;
 }
