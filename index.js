@@ -64,8 +64,8 @@ app.get('/dinosaurs/:id', (req, res) => {
     res.json({ dino })
 })
 
-// GET /dinosaurs/edit/:id -- READ (show) form to edit one dino -- to DISPLAY a FORM// /edit/:id is cuz theres a dino/:id above
-app.get('/dinosaurs/edit/:id', (req, res) => {
+// GET /dinosaurs/edit/:id -- READ (show) form to edit one dino -- to DISPLAY a FORM
+app.get('/dinosaurs/edit/:id', (req, res) => { // /edit/:id is cuz theres a dino/:id above
     // get the dino info to populate the form
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -105,9 +105,76 @@ app.delete('/dinosaurs/:id', (req, res) => {
     //redirect to /dinosaurs
     res.redirect('/dinosaurs')
 })
+
+//GET /prehistoric_creatures -- READ all creatures\
+app.get('/prehistoric_creatures', (req, res) => {
+    //read the creature file
+    const creatures = fs.readFileSync('./prehistoric_creatures.json')
+    const creatureData = JSON.parse(creatures)
+    console.log(creatureData)
+    //rend back the json
+    res.render('prehistoric_creatures/index.ejs', { creatureData })
+})
+
+// POST /prehistoric_creatures -- CREATE a new creature 
+app.post('/prehistoric_creatures', (req, res) => {
+    const creatures = fs.readFileSync('./prehistoric_creatures.json')
+    const creatureData = JSON.parse(creatures)
+    console.log(req.body)
+    //add data from the request body to the creature data 
+    creatureData.push(req.body)
+    //write the file 
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
+    //redirect to /prehistoric_creatures
+    res.redirect('/prehistoric_creatures')
+})
+
+
+//GET /prehistoric_creatures/new -- READ (show) a form to add a creature 
+app.get('/prehistoric_creatures/new', (req, res) => {
+    res.render('/prehistoric_creatures/new.ejs')
+})
+
+//GET /prehistoric_creatures/:id -- READ one specific creature 
+app.get('/prehistoric_creatures/:id', (req, res) => {
+    //get creature data 
+    const creatures = fs.readFileSync('./prehistoric_creatures.json')
+    const creatureData = JSON.parse(creatures)
+    //look up one creature with the request parameters
+    const creat = creatureData[req.params.id]
+    //send one creature back
+    res.json({ creat })
+})
+
+//GET /prehistoric_creatures/edit/:id -- READ (show) form to edit one creature -- to DISPLAY a FORM 
+app.get('/prehistoric_creatures/edit/:id', (req, res) => {
+    const creatures = fs.readFileSync('./prehistoric_creatures.json')
+    const creatureData = JSON.parse(creatures)
+    const creat = creatureData[req.params.id]
+    res.render('prehistoric_creatures/edit.ejs', { creat: creat, creatureId: req.params.id })
+})    
+
+//PUT /prehistoric_creatures/:id -- UPDATE (edit) one creature -- redirect to /prehistoric_creatures/:id	
+app.put('/prehistoric_creatures/:id', (req, res) => {
+    const creatures = fs.readFileSync('./prehistoric_creatures.json')
+    const creatureData = JSON.parse(creatures)
+    creatureData[req.params.id].type = req.body.type
+    creatureData[req.params.id].img_url = req.body.img_url
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
+    res.redirect('/prehistoric_creatures')
+})
+
+//DELETE /prehistoric_creatures/:id	-- DESTROY one specific creature 
+app.delete('/prehistoric_creatures/:id', (req, res) => {
+    const creatures = fs.readFileSync('./prehistoric_creatures.json')
+    const creatureData = JSON.parse(creatures)
+    creatureData.splice(req.params.id, 1)
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
+    res.redirect('/prehistoric_creatures')
+})
+
 //listen on a port
 app.listen(PORT, () => {
     rowdyResults.print()
-    console.log(`is that dinos i hear on port ${PORT}🦕`)
+    console.log(`is that dinos AND prehistoric creatures i hear on port ${PORT}🦕`)
 })
-//rowdy logger good for keeping track of routes
