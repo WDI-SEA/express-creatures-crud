@@ -3,6 +3,7 @@ const express = require('express')
 const rowdy = require('rowdy-logger')
 const fs = require('fs')
 const layouts = require('express-ejs-layouts')
+const methodOverride = require('method-override')
 
 //config app
 const PORT = 3000
@@ -12,6 +13,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(__dirname + '/public')) //where CSS will live
 app.use(layouts) //use ejs layouts
+app.use(methodOverride('_method'))
 
 //define routes
 app.get('/', (req, res) => {
@@ -67,7 +69,13 @@ app.get('/dinosaurs/:id', (req, res) => {
  
 //GET /dinosaurs/edit:id -- READ (show) form to edit one dino
 app.get('/dinosaurs/edit/:id', (req, res) => {
-    res.json({ msg: `show form to edit ${req.params.id}`})
+    //get the dino info to populate the form
+    const dinosaurs = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinosaurs)
+
+    const dino = dinoData[req.params.id]
+    //render the template
+    res.render('dinosaurs/edit.ejs', { dino: dino, dinoId: req.params.id })
 })
 
 //PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur
