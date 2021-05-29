@@ -18,17 +18,17 @@ ul {
     opacity: 70%;
 }
 
-#edit-button {
-    border: 2px solid black;
-    color: black;
-    font-size: 14px;
+#button-box {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
 }
 
 #submit-box {
     margin-top: 20px;
 }
 
-#submit-button {
+#edit-button, #submit-button {
     background-color: crimson;
     color: white;
     border-radius: 10%;
@@ -36,4 +36,20 @@ ul {
     font-weight: bold;
     height: 30px;
     width: 100px;
+}
+
+#edit-button {
+    text-decoration: none;
+    padding: 1px 25px 1px 25px;
+    border-top: 2px solid rgb(118,118,118);
+    border-right: 2px solid rgb(33,33,33);
+    border-bottom: 2px solid rgb(33,33,33);
+    border-left: 2px solid rgb(118,118,118);
+}
+
+#edit-button:active {
+    border-top: 2px solid rgb(33,33,33);
+    border-right: 2px solid rgb(118,118,118);
+    border-bottom: 2px solid rgb(118,118,118);
+    border-left: 2px solid rgb(33,33,33);
 }

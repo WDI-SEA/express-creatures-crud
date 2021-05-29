@@ -2,12 +2,13 @@
     <% dinoData.forEach((dino, index) => { %>
         <li>
             <%= dino.name %> is a <%= dino.type %>.
-            <div>
-                <a id="edit-button" href="/dinosaurs/edit/<%= index %>">Edit</a>
+                <a id="edit-button" href="/dinosaurs/edit/<%= index %>">EDIT</a>
+
                 <form method="POST" action="/dinosaurs/<%= index %>/?_method=DELETE">
-                    <input type="submit" value="Delete">
+                    <div id="submit-box">
+                        <input id="submit-button" type="submit" value="DELETE">
+                    </div>
                 </form>
-            </div>
         </li>
     <% }) %> 
 </ul>
