@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-// GET /prehistoric-creatures -- READ all pcs ~~~~~~~~~
+// GET /dinosaurs -- READ all pcs ~~~~~~~~~
 exports.dino_index = function (req, res) {
  // read the dino file
  const dinosaurs = fs.readFileSync('./dinosaurs.json')
@@ -10,7 +10,7 @@ exports.dino_index = function (req, res) {
  res.render('dinosaurs/index.ejs', {dinoData: dinoData})
 }
 
-// POST /prehistoric-creatures -- CREATE a new PC -- redirect to /prehistoric creature~~~~~~~~
+// POST /dinosaurs -- CREATE a new PC -- redirect to /prehistoric creature~~~~~~~~
 exports.dino_create_post = function (req, res) {
   // read dino file
   const dinosaurs = fs.readFileSync('./dinosaurs.json')
@@ -27,13 +27,13 @@ exports.dino_create_post = function (req, res) {
   res.redirect('/dinosaurs')
 }
 
-exports.pc_create_get = function (req, res) {
+exports.dino_create_get = function (req, res) {
     // read the PC file
-    const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
-    const pcData = JSON.parse(prehistoric)
-    console.log(pcData)
+    const dinosaurs = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinosaurs)
+    console.log(dinoData)
     // send back the json
-    res.render('prehistoric-creatures/index.ejs', {pcData: pcData})
+    res.render('dinosaurs/index.ejs', {dinoData: dinoData})
     
 }
 
@@ -41,7 +41,7 @@ exports.dino_update_get = function (req, res) {
   res.render('dinosaurs/new.ejs')
 }
 
-exports.dino_update_get_id = function (req, res) {
+exports.dino_show_get_id = function (req, res) {
   // get our dino data
   const dinosaurs = fs.readFileSync('./dinosaurs.json')
   const dinoData = JSON.parse(dinosaurs)

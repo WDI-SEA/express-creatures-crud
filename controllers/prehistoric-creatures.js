@@ -42,7 +42,7 @@ exports.pc_update_get = function (req, res) {
   res.render('prehistoric-creatures/new.ejs')
 }
 
-exports.pc_update_get_id = function (req, res) {
+exports.pc_show_get_id = function (req, res) {
     // get our pc data
     const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
     const pcData = JSON.parse(prehistoric)

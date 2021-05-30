@@ -38,10 +38,10 @@ app.get('/dinosaurs', dinoController.dino_index)
 app.post('/dinosaurs', dinoController.dino_create_post)
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino~~~~~~~~~~~~~
-app.get('/dinosaurs/new', dinoController.dino_update_get) 
+app.get('/dinosaurs/new', dinoController.dino_create_get) 
 
 // GET /dinosaurs/:id -- READ one specific dino~~~~~~~~~~
-app.get('/dinosaurs/:id', dinoController.dino_update_get_id)
+app.get('/dinosaurs/:id', dinoController.dino_show_get_id)
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino~~~~~~~~~~~~
 app.get('/dinosaurs/edit/:id', dinoController.dino_update_get_edit_id)
@@ -61,25 +61,25 @@ const pcController = require('./controllers/prehistoric-creatures.js'); // <-- c
 app.get('/prehistoric-creatures', pcController.pc_index)
 
 
-// POST /prehistoric-creatures -- CREATE a new PC -- redirect to /prehistoric creature~~~~~~~~
-app.post('/prehistoric-creatures', pcController.pc_create_post) /// <--- follow this 
-
 // GET /prehistoric-creatures/new -- READ (show) a form to add a pc~~~~~~~~~~~~~
 app.get('/prehistoric-creatures/new', pcController.pc_update_get) 
 
+// POST /prehistoric-creatures -- CREATE a new PC -- redirect to /prehistoric creature~~~~~~~~
+app.post('/prehistoric-creatures', pcController.pc_create_post) /// <--- follow this 
+
 
 // GET /prehistoric-creatures/:id -- READ one specific pc~~~~~~~~~~
-app.get('/prehistoric-creatures/:id', pcController.pc_update_get_id)
+app.get('/prehistoric-creatures/:id', pcController.pc_show_get_id)
 
 // GET /prehistoric-creatures/edit/:id -- READ (show) form to edit one pc~~~~~~~~~~~~
 app.get('/prehistoric-creatures/edit/:id', pcController.pc_update_get_edit_id)
 
 
 // PUT /prehistoric-creatures/:id -- UPDATE (edit) one pc -- redirect to /prehistoric-creatures/:id~~~~~~~~~~~~~~~~~ <--- need help wit hthis one
-app.put('./prehistoric-creatures/:id', pcController.pc_update_put_id)
+app.put('/prehistoric-creatures/:id', pcController.pc_update_put_id)
 
 // DELETE /prehistoric-creatures/:id -- DESTROY one specific PC~~~~~~~~~~~~~~~
-app.delete('./prehistoric-creatures/:id', pcController.pc_delete_id)
+app.delete('/prehistoric-creatures/:id', pcController.pc_delete_id)
 
 
 //open the port for app to be listening on
