@@ -1,7 +1,10 @@
 <ul>
     <% pcData.forEach ((pc, index) => { %>
       <li>
-        <%= pc.type %> is <%= pc.img_url %>
+        <%= pc.type %>   
+        <img src=<%= pc.img_url %> style="width:300px">
+
+        
         <a href="/prehistoric-creatures/edit/<%= index %>">Edit Prehistoric Creature</a>
       </li>
     <% }) %>

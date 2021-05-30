@@ -28,201 +28,58 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+
+const dinoController = require('./controllers/dinosaurs');
+
 // GET /dinosaurs -- READ all dinos ~~~~~~~~~
-app.get('/dinosaurs', (req, res) => {
-  // read the dino file
-  const dinosaurs = fs.readFileSync('./dinosaurs.json')
-  const dinoData = JSON.parse(dinosaurs)
-  console.log(dinoData)
-  // send back the json
-  res.render('dinosaurs/index.ejs', {dinoData: dinoData})
-})
+app.get('/dinosaurs', dinoController.dino_index)
 
 // POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs~~~~~~~~
-app.post('/dinosaurs', (req, res) => {
-  // read dino file
-  const dinosaurs = fs.readFileSync('./dinosaurs.json')
-  const dinoData = JSON.parse(dinosaurs)
-
-  console.log(req.body)
-  // add data from the request body to the dino data
-  dinoData.push(req.body)
-
-  // write the file
-  fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData, null, 2))
-
-  // redirect to /dinosaurs
-  res.redirect('/dinosaurs')
-})
+app.post('/dinosaurs', dinoController.dino_create_post)
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino~~~~~~~~~~~~~
-app.get('/dinosaurs/new', (req, res) => {
-  res.render('dinosaurs/new.ejs')
-}) 
+app.get('/dinosaurs/new', dinoController.dino_update_get) 
 
 // GET /dinosaurs/:id -- READ one specific dino~~~~~~~~~~
-app.get('/dinosaurs/:id', (req, res) => {
-  // get our dino data
-  const dinosaurs = fs.readFileSync('./dinosaurs.json')
-  const dinoData = JSON.parse(dinosaurs)
-
-  // look up one dino with the request parameters
-  const dino = dinoData[req.params.id]
-
-  // send one dino back
-  res.json({ dino })
-})
+app.get('/dinosaurs/:id', dinoController.dino_update_get_id)
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino~~~~~~~~~~~~
-app.get('/dinosaurs/edit/:id', (req, res) => {
-    // get the dino info to populate the form
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
-    const dino = dinoData[req.params.id]
-    // render the template
-  res.render('dinosaurs/edit.ejs', {dino: dino, dinoId: req.params.id})
-})
+app.get('/dinosaurs/edit/:id', dinoController.dino_update_get_edit_id)
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/:id~~~~~~~~~~~~~~~~~
-app.put('/dinosaurs/:id', (req, res) => {
-    // get the dino data from our json
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
-    // find on dino from the req.params.id and use the req body to update
-    dinoData[req.params.id].name = req.body.name
-    dinoData[req.params.id].type = req.body.type
-
-    // write the json file
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData, null, 2))
-
-
-    // redirect to /dinosaurs
-    res.redirect('/dinosaurs')
-
-})
+app.put('/dinosaurs/:id', dinoController.dino_update_put_id)
 
 // DELETE /dinosaur/:id -- DESTROY one specific dino~~~~~~~~~~~~~~~
-app.delete('/dinosaurs/:id', (req, res) => {
-
-    // get out dino json 
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
-
-    // remove one dino from the array -- use req. params
-    dinoData.splice(req.params.id, 1)
-
-    // save dionsaurs.json
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData, null, 2))
-
-    // redirect to /dinosaurs
-    res.redirect('/dinosaurs')
-})
+app.delete('/dinosaurs/:id', dinoController.dino_delete_id)
 
 
 /////~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~//~~~~~~~~
 
-app.get('/dinosaurs', (req, res) => {
-  // read the dino file
-  const dinosaurs = fs.readFileSync('./dinosaurs.json')
-  const dinoData = JSON.parse(dinosaurs)
-  console.log(dinoData)
-  // send back the json
-  res.render('dinosaurs/index.ejs', {dinoData: dinoData})
-})
-
+const pcController = require('./controllers/prehistoric-creatures.js'); // <-- check this line
 
 // GET /prehistoric-creatures -- READ all pcs ~~~~~~~~~
-app.get('/prehistoric-creatures', (req, res) => {
-  // read the PC file
-  const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
-  const pcData = JSON.parse(prehistoric)
-  console.log(pcData)
-  // send back the json
-  res.render('prehistoric-creatures/index.ejs', {pcData: pcData})
-  // res.json({ pcData })
-})
+app.get('/prehistoric-creatures', pcController.pc_index)
 
 
 // POST /prehistoric-creatures -- CREATE a new PC -- redirect to /prehistoric creature~~~~~~~~
-app.post('/prehistoric-creatures', (req, res) => {
-  // read pc file
-  const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
-  const pcData = JSON.parse(prehistoric)
-
-  console.log(req.body)
-  // add data from the request body to the pcnodata
-  pcData.push(req.body)
-
-  // write the file
-  fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData, null, 2))
-
-  // redirect to /prehistoric-creatures
-  res.redirect('/prehistoric-creatures')
-})
+app.post('/prehistoric-creatures', pcController.pc_create_post) /// <--- follow this 
 
 // GET /prehistoric-creatures/new -- READ (show) a form to add a pc~~~~~~~~~~~~~
-app.get('/prehistoric-creatures/new', (req, res) => {
-  res.render('prehistoric-creatures/new.ejs')
-}) 
+app.get('/prehistoric-creatures/new', pcController.pc_update_get) 
+
 
 // GET /prehistoric-creatures/:id -- READ one specific pc~~~~~~~~~~
-app.get('/prehistoric-creatures/:id', (req, res) => {
-  // get our pc data
-  const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
-  const pcData = JSON.parse(prehistoric)
-
-  // look up one pc with the request parameters
-  const pc = pcData[req.params.id]
-
-  // send one pc back
-  res.json({ pc })
-})
+app.get('/prehistoric-creatures/:id', pcController.pc_update_get_id)
 
 // GET /prehistoric-creatures/edit/:id -- READ (show) form to edit one pc~~~~~~~~~~~~
-app.get('/prehistoric-creatures/edit/:id', (req, res) => {
-    // get the pc info to populate the form
-    const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
-    const pcData = JSON.parse(prehistoric)
-    const pc = pcData[req.params.id]
-    // render the template
-  res.render('prehistoric-creatures/edit.ejs', {pc: pc, pcId: req.params.id})
-})
+app.get('/prehistoric-creatures/edit/:id', pcController.pc_update_get_edit_id)
+
 
 // PUT /prehistoric-creatures/:id -- UPDATE (edit) one pc -- redirect to /prehistoric-creatures/:id~~~~~~~~~~~~~~~~~ <--- need help wit hthis one
-app.put('/prehistoric-creatures/:id', (req, res) => {
-    // get the pc data from our json
-    const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
-    const pcData = JSON.parse(prehistoric)
-    // find on pc from the req.params.id and use the req body to update
-    pcData[req.params.id].type = req.body.type // <--- need help with this one
-    pcData[req.params.id].img_url = req.body.img_url // <--- need help with this one
-
-    // write the json file
-    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData, null, 2))
-
-
-    // redirect to /prehistoric-creatures
-    res.redirect('/prehistoric-creatures')
-
-})
+app.put('./prehistoric-creatures/:id', pcController.pc_update_put_id)
 
 // DELETE /prehistoric-creatures/:id -- DESTROY one specific PC~~~~~~~~~~~~~~~
-app.delete('/prehistoric-creatures/:id', (req, res) => {
-
-    // get out pc json 
-    const prehistoric = fs.readFileSync('./prehistoric-creatures.json')
-    const pcData = JSON.parse(prehistoric)
-
-    // remove one pc from the array -- use req. params
-    pcData.splice(req.params.id, 1)
-
-    // save prehistoric-creatures.json
-    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData, null, 2))
-
-    // redirect to /prehistoric-creatures
-    res.redirect('/prehistoric-creatures')
-})
-
+app.delete('./prehistoric-creatures/:id', pcController.pc_delete_id)
 
 
 //open the port for app to be listening on

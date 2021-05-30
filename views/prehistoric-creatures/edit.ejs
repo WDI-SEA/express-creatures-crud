@@ -1,9 +1,9 @@
   
 <form method="POST" action="/prehistoric-creatures/<%= pcId %>/?_method=PUT">
-    <label>Name</label>
+    <label>Type: </label>
     <input type="text" value="<%= pc.type %>" name="type" />
   
-    <label>Type</label>
+    <label>Image URL: </label>
     <input type="text" value="<%= pc.img_url %>" name="img_url" />
   
     <input type="submit" />
