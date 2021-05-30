@@ -8,9 +8,8 @@ const fs = require('fs')
 
 // GET /dinosaurs -- READ all dinos
 router.get('/index', (req, res) => {
-    // read the dino file
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
+    // get JSONed dino data back from our DB
+    const dinoData = refreshData()
 
     // send back the json
     res.render('dinosaurs/index.ejs', { dinoData: dinoData } )
@@ -18,15 +17,14 @@ router.get('/index', (req, res) => {
 
 // POST /dinosaurs -- CREATE a new dino
 router.post('/index', (req, res) => {
-    // read dino file
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
+    // get JSONed dino data back from our DB
+    const dinoData = refreshData()
 
     // add data from the request body to the dino data
     dinoData.push(req.body)
 
-    // write the file
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    // write the json file
+    writeToJSONFile(dinoData)
 
     // redirect to /dinosaurs
     res.redirect('/dinosaurs/index')
@@ -39,9 +37,8 @@ router.get('/new', (req, res) => {
 
 // GET /dinosaurs/:id -- READ one specific dino
 router.get('/:id', (req, res) => {
-    // get our dino data
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
+    // get JSONed dino data back from our DB
+    const dinoData = refreshData()
 
     // look up one dino with the request parameters
     const dino = dinoData[req.params.id]
@@ -52,9 +49,8 @@ router.get('/:id', (req, res) => {
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino
 router.get('/edit/:id', (req, res) => {
-    // get the dino info to populate the form
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
+    // get JSONed dino data back from our DB
+    const dinoData = refreshData()
 
     const dino = dinoData[req.params.id]
     // render the template
@@ -63,16 +59,15 @@ router.get('/edit/:id', (req, res) => {
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/:id
 router.put('/edit/:id', (req, res) => {
-    // get the dino data from our json
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
+    // get JSONed dino data back from our DB
+    const dinoData = refreshData()
 
     // find one dino from the req.params.id and use the req.body to update
     dinoData[req.params.id].name = req.body.name
     dinoData[req.params.id].type = req.body.type
 
     // write the json file
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    writeToJSONFile(dinoData)
 
     // redirect to /dinosaurs
     res.redirect('/dinosaurs/index')
@@ -80,18 +75,32 @@ router.put('/edit/:id', (req, res) => {
 
 // DELETE /dinosaurs/:id -- DESTROY one specific dino
 router.delete('/:id', (req, res) => {
-    // get our dino json
-    const dinosaurs = fs.readFileSync('./dinosaurs.json')
-    const dinoData = JSON.parse(dinosaurs)
+    // get JSONed dino data back from our DB
+    const dinoData = refreshData()
 
     // remove one dino from the array
     dinoData.splice(req.params.id, 1)
 
     // write the json file
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    writeToJSONFile(dinoData)
 
     // redirect to /dinosaurs
     res.redirect('/index')
 })
+
+
+/*~~ FUNCTIONS ~~*/
+
+function refreshData() {
+    const dinosaurs = fs.readFileSync('./dinosaurs.json')
+    const dinoData = JSON.parse(dinosaurs)
+    
+    return dinoData
+}
+
+function writeToJSONFile(dinoData) {
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+}
+
 
 module.exports = router
