@@ -40,6 +40,7 @@ app.post('/dinos', (req, res) => {
   //read dino file 
   const dinos = fs.readFileSync('./dinos.json')
   const dinoData = JSON.parse(dinos)
+  console.log(dinoData)
   
   console.log(req.body)
   //add data from request body to the dino data
@@ -78,7 +79,7 @@ app.get('/dinos/edit/:id', (req, res) => {
   const dinoData = JSON.parse(dino)
   const dinoRender = dinoData[req.params.id]
   // render the template
-  res.render('dinosaurs/edit.ejs', { dino: dinoRender,  dinoId: req.params.id })
+  res.render('dinos/edit.ejs', { dino: dino,  dinoId: req.params.id })
 })
 
 //PUT /dino/:id -- UPDATE (edit) one dino -- redirect to /dinos/:
@@ -86,6 +87,7 @@ app.put('/dinos/:id', (req, res) => {
   //get the dino date from json
 const dinos = fs.readFileSync('./dinos.json')
 const dinoData = JSON.parse(dinos)
+console.log(dinoData, "👩‍🎤")
 
 //find one that dino from req.params.id and us the req body to update
 dinoData[req.params.id].name = req.body.name
