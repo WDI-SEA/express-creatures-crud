@@ -16,9 +16,11 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded( { extended: false } ))
 app.use(express.static(__dirname + '/public')) // where the css will live
 app.use(layouts) // use ejs layouts
-app.use('/dinosaurs', require('./controllers/dinosaurs'))
 // method override so we can put and delete
 app.use(methodOverride('_method'))
+
+// controllers
+app.use('/dinosaurs', require('./controllers/dinosaurs'))
 
 // define routes
 app.get('/', (req, res) => {

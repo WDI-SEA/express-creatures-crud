@@ -2,10 +2,11 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
-const methodOverride = require('method-override')
-// override method
-router.use(express.urlencoded( { extended: false } ))
-router.use(methodOverride('_method'))
+// const methodOverride = require('method-override')
+
+// // override method
+// router.use(express.urlencoded( { extended: false } ))
+// router.use(methodOverride('_method'))
 
 
 /*~~ DINOSAUR ROUTES ~~*/
@@ -34,7 +35,7 @@ router.post('/index', (req, res) => {
     fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
 
     // redirect to /dinosaurs
-    res.redirect('/index')
+    res.redirect('/dinosaurs/index')
 })
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino -- redirect to /dinosaurs
@@ -43,7 +44,7 @@ router.get('/new', (req, res) => {
 })
 
 // GET /dinosaurs/:id -- READ one specific dino
-router.get('/dinosaurs/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     // get our dino data
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -67,7 +68,7 @@ router.get('/edit/:id', (req, res) => {
 })
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/:id
-router.put('/:id', (req, res) => {
+router.put('/edit/:id', (req, res) => {
     // get the dino data from our json
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -80,7 +81,7 @@ router.put('/:id', (req, res) => {
     fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
 
     // redirect to /dinosaurs
-    res.redirect('/index')
+    res.redirect('/dinosaurs/index')
 })
 
 // DELETE /dinosaurs/:id -- DESTROY one specific dino
