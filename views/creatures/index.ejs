@@ -1,0 +1,8 @@
+<ul>
+    <% creaturesData.forEach((creature, index) => { %>
+ <li>
+    <%= creature.name %> is a <%= creature.type %>
+    <a href='/creatures/edit/<%= index %>'>Edit creature</a>
+</li>
+<% }) %>
+</ul>
