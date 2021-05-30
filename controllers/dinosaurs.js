@@ -2,11 +2,6 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
-// const methodOverride = require('method-override')
-
-// // override method
-// router.use(express.urlencoded( { extended: false } ))
-// router.use(methodOverride('_method'))
 
 
 /*~~ DINOSAUR ROUTES ~~*/
@@ -64,7 +59,7 @@ router.get('/edit/:id', (req, res) => {
 
     const dino = dinoData[req.params.id]
     // render the template
-    res.render('dinosaurs/edit.ejs', { dino: dino , dinoId: req.params.id})
+    res.render('dinosaurs/edit.ejs', { dino: dino , dinoId: req.params.id } )
 })
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/:id
