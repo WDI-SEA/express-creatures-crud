@@ -51,7 +51,7 @@ exports.pc_update_get_id = function (req, res) {
     const pc = pcData[req.params.id]
   
     // send one pc back
-    res.json({ pc })
+    res.render('prehistoric-creatures/index.ejs', {pcData: [pc]})
 }
 
 exports.pc_update_get_edit_id = function (req, res) {

@@ -50,7 +50,8 @@ exports.dino_update_get_id = function (req, res) {
   const dino = dinoData[req.params.id]
 
   // send one dino back
-  res.json({ dino })
+   // send one pc back
+   res.render('dinosaurs/index.ejs', {dinoData: [dino]})
 }
 
 exports.dino_update_get_edit_id = function (req, res) {
