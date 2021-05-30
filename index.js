@@ -4,7 +4,6 @@ const fs = require('fs')
 const { emitWarning } = require('process')
 const layouts = require('express-ejs-layouts')
 const methodOverride = require('method-override')
-
 //CONFIG APP
 const app = express()
 const rowdyResults = rowdy.begin(app)
@@ -102,6 +101,7 @@ app.delete('/dinosaurs/:id', (req, res) => {
 
     //save dinosaurs.json
     fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    console.log("deleted")
     //redirect to /dinosaurs
     res.redirect('/dinosaurs')
 })
@@ -141,17 +141,17 @@ app.get('/prehistoric_creatures/:id', (req, res) => {
     const creatures = fs.readFileSync('./prehistoric_creatures.json')
     const creatureData = JSON.parse(creatures)
     //look up one creature with the request parameters
-    const creat = creatureData[req.params.id]
+    const creature = creatureData[req.params.id]
     //send one creature back
-    res.json({ creat })
+    res.json({ creature })
 })
 
 //GET /prehistoric_creatures/edit/:id -- READ (show) form to edit one creature -- to DISPLAY a FORM 
 app.get('/prehistoric_creatures/edit/:id', (req, res) => {
     const creatures = fs.readFileSync('./prehistoric_creatures.json')
     const creatureData = JSON.parse(creatures)
-    const creat = creatureData[req.params.id]
-    res.render('prehistoric_creatures/edit.ejs', { creat: creat, creatureId: req.params.id })
+    const creature = creatureData[req.params.id]
+    res.render('prehistoric_creatures/edit.ejs', { creature: creature, creatureId: req.params.id })
 })    
 
 //PUT /prehistoric_creatures/:id -- UPDATE (edit) one creature -- redirect to /prehistoric_creatures/:id	

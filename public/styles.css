@@ -1,4 +1,50 @@
 * {
-    background-color: cadetblue;
-    color: darkmagenta;
+    background-image:url("/jeff_michael.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:springgreen;
+}
+h1 {
+    color:springgreen;
+    background-image: none;
+    font-size: 30px;
+}
+ul {
+    background-image: none;
+    font-size: 30px;
+}
+li {
+    background-image: none;
+    font-size: 30px;
+    color: chartreuse;
+}
+body {
+    background-image: none;
+    font-size: 30px;
+}
+p {
+    background-image: none;
+    font-size: 30px;
+}
+a {
+    background-image: none;
+    font-size: 25px;
+}
+form, input{
+    background-image: none;
+    background-color:transparent;
+    font-size: 18px;
+}
+label {
+    background-image: none;
+    font-size: 30px;
+}
+nav {
+    background-image: none;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+#dino, #creature {
+    background-image: none;
 }
