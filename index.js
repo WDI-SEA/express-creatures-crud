@@ -17,11 +17,13 @@ app.use(layouts)
 // method override so we can put and delete
 app.use(methodOverride('_method'))
 
+
 //define routes
 app.get('/', (req,res) => {
     // res.json({ msg: "hello dinos" })
     res.render('home')
 })
+
 
 app.use('/dinosaurs', require('./controllers/dinosaurs'));
 app.use('/prehistoric_creatures', require('./controllers/prehistoric_creatures'));

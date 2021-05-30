@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
-
+const fs = require('fs')
+const layouts = require('express-ejs-layouts')
+const methodOverride = require('method-override')
 
 
 
 
 // GET  /dinosaurs -- READ all dinos
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     // read the dino file
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -19,7 +21,7 @@ app.get('/', (req, res) => {
 
 // POST /dinosaurs -- Create a new dino -- redirect to /dinosaurs
 
-app.post('/dinosaurs', (req, res) => {
+router.post('/dinosaurs', (req, res) => {
     //read dino file 
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -40,7 +42,7 @@ app.post('/dinosaurs', (req, res) => {
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 
-app.get('/dinosaurs/new', (req, res) => {
+router.get('/dinosaurs/new', (req, res) => {
     res.render('dinosaurs/new.ejs')
 })
 
@@ -48,7 +50,7 @@ app.get('/dinosaurs/new', (req, res) => {
 
 // GET /dinosaurs/:id -- READ one specific dino
 
-app.get('/dinosaurs/:id', (req,res) => {
+router.get('/dinosaurs/:id', (req,res) => {
     // get our dino data
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -65,7 +67,7 @@ app.get('/dinosaurs/:id', (req,res) => {
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one
 
-app.get('/dinosaurs/edit/:id', (req,res) =>{
+router.get('/dinosaurs/edit/:id', (req,res) =>{
     // get the dino info to populate the form
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -80,7 +82,7 @@ app.get('/dinosaurs/edit/:id', (req,res) =>{
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaurs/:id
 
-app.put('/dinosaurs/:id', (req, res) => {
+router.put('/dinosaurs/:id', (req, res) => {
     // get the dino data from our json
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -102,7 +104,7 @@ app.put('/dinosaurs/:id', (req, res) => {
 
 // DELETE /dinosaur/:id -- DESTROY one specific dino
 
-app.delete('/dinosaurs/:id', (req, res) => {
+router.delete('/dinosaurs/:id', (req, res) => {
     //get our dino JSON
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)

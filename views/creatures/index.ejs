@@ -1,0 +1,16 @@
+<ul>
+    <%creatureData.forEach((creature, index)  => { %>
+        <li>
+        <%= creature.type %>
+        <img src="<%=creature.img_url%>" alt="">
+        <a href="/creature/edit/<%=index%>">Edit creature</a>
+        
+        
+        <form action="/creature/<%= index %>/?_method=DELETE" method="POST">
+            <label for="">Delete <%= creature.name %></label>
+            <input type="submit" value="Delete"/>
+        </form>
+
+        </li>
+    <% }) %>
+</ul>
