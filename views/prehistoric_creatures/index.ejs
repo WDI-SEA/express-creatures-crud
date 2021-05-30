@@ -3,8 +3,10 @@
         <li>
             <%= creature.type %>
             <img src="<%= creature.img_url %>" alt="">
-            <!-- NEED TO EDIT LINK -->
             <a href="/prehistoric_creatures/edit/<%= index %>">Edit creature</a>
+            <form method="POST" action="./<%= index %>/?_method=DELETE">
+                <input type="submit" value="Delete">
+            </form>
         </li>
     <% }) %>
 </ul>

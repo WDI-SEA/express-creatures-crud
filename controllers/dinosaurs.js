@@ -85,7 +85,7 @@ router.delete('/:id', (req, res) => {
     writeToJSONFile(dinoData)
 
     // redirect to /dinosaurs
-    res.redirect('/index')
+    res.redirect('/dinosaurs/index')
 })
 
 

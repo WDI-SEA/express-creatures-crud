@@ -74,7 +74,7 @@ router.put('/edit/:id', (req, res) => {
 })
 
 // DELETE /prehistoric_creatures/:id -- DESTROY one specific prehistoric creature
-router.delete('/prehistoric_creatures/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     // read prehistoric creatures file
     const creatureData = refreshData()
 
