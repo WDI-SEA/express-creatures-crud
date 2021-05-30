@@ -11,7 +11,7 @@ router.get('/index', (req, res) => {
     // read the dino file
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
-    console.log(dinoData)
+
     // send back the json
     res.render('dinosaurs/index.ejs', { dinoData: dinoData } )
 })
@@ -22,7 +22,6 @@ router.post('/index', (req, res) => {
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
 
-    console.log(req.body)
     // add data from the request body to the dino data
     dinoData.push(req.body)
 
