@@ -49,7 +49,7 @@ app.post('/dinosaurs', (req, res) => {
   dinoData.push(req.body)
 
   // write the file
-  fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+  fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData, null, 2))
 
   // redirect to /dinosaurs
   res.redirect('/dinosaurs')
@@ -93,7 +93,7 @@ app.put('/dinosaurs/:id', (req, res) => {
     dinoData[req.params.id].type = req.body.type
 
     // write the json file
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData, null, 2))
 
 
     // redirect to /dinosaurs
@@ -112,7 +112,7 @@ app.delete('/dinosaurs/:id', (req, res) => {
     dinoData.splice(req.params.id, 1)
 
     // save dionsaurs.json
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData, null, 2))
 
     // redirect to /dinosaurs
     res.redirect('/dinosaurs')
@@ -154,7 +154,7 @@ app.post('/prehistoric-creatures', (req, res) => {
   pcData.push(req.body)
 
   // write the file
-  fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData))
+  fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData, null, 2))
 
   // redirect to /prehistoric-creatures
   res.redirect('/prehistoric-creatures')
@@ -198,7 +198,7 @@ app.put('/prehistoric-creatures/:id', (req, res) => {
     pcData[req.params.id].img_url = req.body.img_url // <--- need help with this one
 
     // write the json file
-    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData))
+    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData, null, 2))
 
 
     // redirect to /prehistoric-creatures
@@ -217,7 +217,7 @@ app.delete('/prehistoric-creatures/:id', (req, res) => {
     pcData.splice(req.params.id, 1)
 
     // save prehistoric-creatures.json
-    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData))
+    fs.writeFileSync('./prehistoric-creatures.json', JSON.stringify(pcData, null, 2))
 
     // redirect to /prehistoric-creatures
     res.redirect('/prehistoric-creatures')

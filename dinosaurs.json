@@ -1,1 +1,27 @@
-[{"name":"Cera","type":"triceratops"},{"name":"Ducky","type":"saurolophus"},{"name":"Petrie","type":"psat"},{"name":"Spike","type":"stegosaurus"},{"name":"Barney","type":"Purple Dino"},{"type":"T-REX","name":"Ranger Rex"},{"type":"Verified Dino","name":"Kenny"}]
+[
+  {
+    "name": "Cera",
+    "type": "triceratops"
+  },
+  {
+    "name": "Ducky",
+    "type": "saurolophus"
+  },
+  {
+    "name": "Petrie",
+    "type": "psat"
+  },
+  {
+    "name": "Spike",
+    "type": "stegosaurus"
+  },
+  {
+    "name": "Barney",
+    "type": "Purple Dino"
+  },
+  {
+    "type": "T-REX",
+    "name": "Ranger Rex"
+  }
+
+]

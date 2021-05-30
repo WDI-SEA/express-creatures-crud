@@ -3,7 +3,7 @@ const router = express.Router()
 
 // controller rule for /loveit/foods
 router.get('/foods', (req, res) => {
-    let faveFoods = ['Boba', 'Fried Chicken Sandwhich', 'Pizza']
+    // let faveFoods = ['Boba', 'Fried Chicken Sandwhich', 'Pizza']
     res.render('loveit/foods.ejs', { foods: faveFoods })
 })
 
