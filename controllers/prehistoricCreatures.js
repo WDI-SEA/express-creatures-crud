@@ -20,9 +20,9 @@ router.post('/', (req, res) => {
     const creatures = fs.readFileSync('./prehistoricCreatures.json')
     const creaturesData = JSON.parse(creatures)
 
-    console.log(req.body)
+    console.log(req.body2)
     //add data from the request body to the dino data
-    creaturesData.push(req.body)
+    creaturesData.push(req.body2)
 
     // write the file
     fs.writeFileSync('./prehistoricCreatures.json', JSON.stringify(creaturesData))
