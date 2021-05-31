@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     // read the dino file
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
-    console.log(dinoData)
+    // console.log(dinoData)
     // send back the json
     res.render('dinosaurs/index.ejs', {dinoData: dinoData})
 })
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 // POST /dinosaurs -- Create a new dino -- redirect to /dinosaurs
 
-router.post('/dinosaurs', (req, res) => {
+router.post('/', (req, res) => {
     //read dino file 
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -42,7 +42,7 @@ router.post('/dinosaurs', (req, res) => {
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 
-router.get('/dinosaurs/new', (req, res) => {
+router.get('/new', (req, res) => {
     res.render('dinosaurs/new.ejs')
 })
 
@@ -50,7 +50,7 @@ router.get('/dinosaurs/new', (req, res) => {
 
 // GET /dinosaurs/:id -- READ one specific dino
 
-router.get('/dinosaurs/:id', (req,res) => {
+router.get('/:id', (req,res) => {
     // get our dino data
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -67,7 +67,7 @@ router.get('/dinosaurs/:id', (req,res) => {
 
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one
 
-router.get('/dinosaurs/edit/:id', (req,res) =>{
+router.get('/edit/:id', (req,res) =>{
     // get the dino info to populate the form
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -82,7 +82,7 @@ router.get('/dinosaurs/edit/:id', (req,res) =>{
 
 // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaurs/:id
 
-router.put('/dinosaurs/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     // get the dino data from our json
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
@@ -104,7 +104,7 @@ router.put('/dinosaurs/:id', (req, res) => {
 
 // DELETE /dinosaur/:id -- DESTROY one specific dino
 
-router.delete('/dinosaurs/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     //get our dino JSON
     const dinosaurs = fs.readFileSync('./dinosaurs.json')
     const dinoData = JSON.parse(dinosaurs)
