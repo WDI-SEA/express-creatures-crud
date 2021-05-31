@@ -20,7 +20,7 @@ app.use(layouts) // use ejs layouts
 app.use(methodOverride('_method'))
 
 // app.use('/dinos', require('./controllers/dinos'))
-// app.use('/creatures', require('./controllers/creatures'))
+// app.use('/prehistoric-creatures', require('./controllers/creatures'))
 
 //define routes
 app.get('/', (req, res) => {
@@ -79,8 +79,8 @@ app.get('/dinos/:id', (req, res) => {
 //GET /dinos/edit/:id -- READ (show) form to edit one dino
 app.get('/dinos/edit/:id', (req, res) => {
   //get the dino info to populate form
-  const dino = fs.readFileSync('./dinos.json')
-  const dinoData = JSON.parse(dino)
+  const dinos = fs.readFileSync('./dinos.json')
+  const dinoData = JSON.parse(dinos)
   const dinoRender = dinoData[req.params.id]
   // render the template
   res.render('dinos/edit.ejs', { dino: dinoRender,  dinoId: req.params.id })
@@ -143,15 +143,15 @@ app.get('/prehistoric-creatures/new', (req, res) => {
 app.post('/prehistoric-creatures', (req, res) => {
   //read creatures file 
   const creatures = fs.readFileSync('./prehistoric_creatures.json')
-  const dinoData = JSON.parse(creatures)
-  console.log(dinoData)
+  const creatureData = JSON.parse(creatures)
+  console.log(creatureData)
   
   console.log(req.body)
   //add data from request body to the data
-  dinoData.push(req.body)
+  creatureData.push(req.body)
 
   //write the file
-fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(dinoData))
+fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
 
   //readirect to /creatures
   res.redirect('/prehistoric-creatures')
