@@ -4,6 +4,9 @@
       <%= dino.name %> is a <%= dino.type %>
       <a href="/dinosaurs/edit/<%= index %>">Edit dino</a>
 
+      <form method="POST" action="/dinosaurs/<%= index %>/?_method=DELETE">
+        <input type="submit" value="Delete">
+      </form>
     </li>
   <% }) %>
 </ul>
