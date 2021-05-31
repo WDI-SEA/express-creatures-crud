@@ -8,12 +8,13 @@
 </ul> -->
 
 <% creatureData.forEach((creature, index) => { %>
-  <h3><%= creature.type %> </h3>
-  <p>looks like</p> <img src= "<%= creature.img_url %>" <br>
+  <div class="py-3">
+  <h3 class="text-capitalize pb-3"><%= creature.type %> </h3>
+  <img class="img-fluid pb-3" src= "<%= creature.img_url %>" <br>
 
-  <p>You can edit creature <a href="/prehistoric-creatures/edit/<%= index %>"> here </a> </p>
+  <p>You can edit the creature <a class="text-decoration-none pb-2" href="/prehistoric-creatures/edit/<%= index %>"> here</a>.</p>
   <form method="POST" action="/prehistoric-creatures/<%= index %>/?_method=DELETE">
-    <input type="submit" value="Delete">
+    <input class="btn btn-dark" type="submit" value="Delete">
   </form>
-
+  </div>
   <% }) %>
