@@ -43,7 +43,7 @@ router.get("/:id", (req ,res) => {
 
     const creature = creaturesData[req.params.id]
 
-    res.render("prehistoric_creatures/creature.ejs", {creature:creature, creatureId : req.params.id})
+    res.render("prehistoric_creatures/index.ejs", {creaturesData, index:req.params.id})
 })
 
 // GET READ edit specific prehistoric creature using a form
