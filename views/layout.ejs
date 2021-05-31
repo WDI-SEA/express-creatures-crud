@@ -8,8 +8,20 @@
     <link href="/styles.css" rel="stylesheet"/>
 </head>
 <body>
-    <nav>
-        <ul>
+    <div id="sidebar">
+        <a href="/">Home</a>
+        <a href="/dinosaurs/dinosaurs">Dinosaurium</a>
+        <a href="/dinosaurs/dinosaurs/new">New Dinosaur</a>
+        <a href="/prehistoric_creatures/prehistoric_creatures">Prehistorium</a>
+        <a href="/prehistoric_creatures/prehistoric_creatures/new">New Prehistoric Creature</a>
+    </div>
+    <div id="main">
+        <button id="open-button" onclick="controlNav()">
+            <img id="button-icon" src="https://static.thenounproject.com/png/168650-200.png"/>
+        </button>
+        <%- body %>
+    </div>
+        <!-- <ul>
             <li id="links">
                 <a href="/">Home</a>
             </li>
@@ -25,10 +37,40 @@
             <li id="links">
                 <a href="/prehistoric_creatures/prehistoric_creatures/new">New Prehistoric Creature</a>
             </li>
-        </ul>
-    </nav>
-    <h1>Yello</h1>
+        </ul> -->
+    <script>
+        function controlNav() {
+            let sidebar = document.getElementById("sidebar")
+            let main = document.getElementById("main")
+            let openButton = document.getElementById("open-button")
+            if (sidebar.style.width == 0 && main.style.marginLeft == 0) {
+                sidebar.style.width = "250px"
+                main.style.marginLeft = "250px"
+                // openButton.style.transform = "rotate(180deg)"
+                openButton.style.transform = "scaleX(-1)"
+            } else if (
+                sidebar.style.width == "250px" && main.style.marginLeft == "250px") {
+                    sidebar.style.width = 0
+                    main.style.marginLeft = 0
+                    // openButton.style.transform = "rotate(360deg)"
+                openButton.style.transform = "scaleX(1)"
 
-    <%- body %>
+            } 
+            else {
+                sidebar.style.width = "250px"
+                main.style.marginLeft = "250px"
+                // openButton.style.transform = "rotate(180deg)"
+                openButton.style.transform = "scaleX(-1)"
+            }
+        }
+        // function openNav() {
+        //     document.getElementById("sidebar").style.width = "250px"
+        //     document.getElementById("main").style.marginLeft = "250px"
+        // }
+        // function closeNav() {
+        //     document.getElementById("sidebar").style.width = "0"
+        //     document.getElementById("main").style.marginLeft = "0"
+        // }
+    </script>
 </body>
 </html>
