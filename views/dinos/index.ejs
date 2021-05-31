@@ -1,8 +1,17 @@
+
+<form method="GET" action="/dinos">
+  <label for="nameFilter">Filter by Name</label>
+  <input id="nameFilter" type="text" name="nameFilter">
+  <input type="submit">
+</form>
+
+
 <ul>
   <% dinoData.forEach((dino, index) => { %>
-    <li>
-      <%= dino.name %> is a <%= dino.type %>
-      <a href="/dinos/edit/<%= index %>">Edit dino</a>
-     </li>
- <% }) %>
+  <li><%= dino.name %> is a <%= dino.type %>
+      <form method="POST" action="/dinos/<%= index %>/?_method=DELETE">
+          <input type="submit" value="Delete">
+      </form>
+  </li>
+  <% }); %>
 </ul>

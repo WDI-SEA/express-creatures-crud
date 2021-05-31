@@ -1,4 +1,5 @@
 <form method="POST" action="/dinos/<%= dinoId %>/?_method=PUT">
+  <h1><%= dino.name %> is a <%= dino.type %></h1>
   <label for="name">Name</label>
   <input type="text" value="<%= dino.name %>" name="name">
 
