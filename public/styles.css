@@ -2,6 +2,7 @@
     background-color: chartreuse;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
 ul {
@@ -33,6 +34,16 @@ ul {
     font-weight: bold;
     height: 30px;
     width: 100px;
+}
+
+.text-field {
+    background-color: cornsilk;
+    border-radius: 10%;
+    color: rgb(117,117,117)
+}
+
+img {
+    max-width: 300px;
 }
 
 /* #edit-button {

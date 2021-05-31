@@ -40,6 +40,11 @@ app.get("/dinosaurs", (req, res) => {
 
 })
 
+app.get("/prehistoric_creatures", (req, res) => {
+    const creatureData = JSON.parse(fs.readFileSync("./prehistoric_creatures.json"))
+    res.render("prehistoric_creatures/index.ejs", {creatureData})
+})
+
 // POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs
 app.post("/dinosaurs", (req, res) => {
     // read dinosaurs.json
