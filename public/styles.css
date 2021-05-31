@@ -1,0 +1,24 @@
+*{
+    background-color: lightgrey;
+    text-align: center;
+}
+
+.homeLinks {
+    padding: 20px;
+}
+
+ #imageHome {
+    margin-top: 50px;
+}
+
+.newForm {
+    margin-top: 50px;
+} 
+
+ul {
+    list-style-type: none;
+   }
+
+.animalList{
+    margin-top: 25px;
+}
