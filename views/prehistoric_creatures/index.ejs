@@ -1,0 +1,9 @@
+<ul>
+    <%  creatureData.forEach( (creature, index) => { %>
+        <li>
+            <%= creature.type %> <a href="<%= creature.img_url %>">picture</a> 
+            <a href="/creatures/edit/<%= index %>">Edit</a>
+            <a href="/creatures/delete/<%= index %>?_method=DELETE>">Delete</a>
+        </li>
+    <% }) %>
+</ul>

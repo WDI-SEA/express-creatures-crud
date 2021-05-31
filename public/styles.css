@@ -1,4 +1,28 @@
 * {
-    background-color: chartreuse;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #e1a95f ;
     /* color: hotpink; */
+    font-family: 'Courier New', Courier, monospace;
   }
+
+  li {
+    margin: 5px;
+  }
+
+  .dinoNav {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+
+  /* .creatureNav {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+  } */
