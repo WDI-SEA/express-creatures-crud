@@ -58,9 +58,20 @@ app.post("/dinosaurs", (req, res) => {
     res.redirect("/dinosaurs")
 })
 
+app.post("/prehistoric_creatures", (req, res) => {
+    const creatureData = JSON.parse(fs.readFileSync("./prehistoric_creatures.json"))
+    creatureData.push(req.body)
+    fs.writeFileSync("./prehistoric_creatures.json", JSON.stringify(creatureData))
+    res.redirect("/prehistoric_creatures")
+})
+
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 app.get("/dinosaurs/new", (req, res) => {
     res.render("dinosaurs/new.ejs")
+})
+
+app.get("/prehistoric_creatures/new", (req, res) => {
+    res.render("prehistoric_creatures/new.ejs")
 })
 
 // GET /dinosaurs/:id -- READ (list) info on one dino.
@@ -74,6 +85,12 @@ app.get("/dinosaurs/:id", (req, res) => {
     res.json({dino})
 })
 
+app.get("/prehistoric_creatures/:id", (req, res) => {
+    const creatureData = JSON.parse(fs.readFileSync("./prehistoric_creatures.json"))
+    const creature = creatureData[req.params.id]
+    res.json({creature})
+})
+
 // GET /dinosaurs/edit/:id -- READ (show) form for editing one dino.
 app.get("/dinosaurs/edit/:id", (req, res) => {
     // get dino info to populate the form
@@ -82,6 +99,12 @@ app.get("/dinosaurs/edit/:id", (req, res) => {
     const dino = dinoData[req.params.id]
     // render the template
     res.render("dinosaurs/edit.ejs", {dino: dino, dinoId: req.params.id})
+})
+
+app.get("/prehistoric_creatures/edit/:id", (req, res) => {
+    const creatureData = JSON.parse(fs.readFileSync("./prehistoric_creatures.json"))
+    const creature = creatureData[req.params.id]
+    res.render("prehistoric_creatures/edit.ejs", {creature: creature, creatureID: req.params.id })
 })
 
 // PUT /dinosaurs/:id -- UPDATE (edit) info on one dino. -- redirect to /dinosaurs/:id OR /dinosaurs
@@ -98,6 +121,14 @@ app.put("/dinosaurs/:id", (req, res) => {
     res.redirect("/dinosaurs")
 })
 
+app.put("/prehistoric_creatures/:id", (req, res) => {
+    const creatureData = JSON.parse(fs.readFileSync("./prehistoric_creatures.json"))
+    creatureData[req.params.id].type = req.body.type
+    creatureData[req.params.id].img_url = req.body.img_url
+    fs.writeFileSync("./prehistoric_creatures.json", JSON.stringify(creatureData))
+    res.redirect("/prehistoric_creatures")
+})
+
 // DELETE /dinosaurs/:id -- DELETE specified dino.
 app.delete("/dinosaurs/:id", (req, res) => {
     // get dinosaurs.json
@@ -109,6 +140,13 @@ app.delete("/dinosaurs/:id", (req, res) => {
     fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinoData))
     // redirect to /dinosaurs
     res.redirect("/dinosaurs")
+})
+
+app.delete("/prehistoric_creatures/:id", (req, res) => {
+    const creatureData = JSON.parse(fs.readFileSync("./prehistoric_creatures.json"))
+    creatureData.splice(req.params.id, 1)
+    fs.writeFileSync("./prehistoric_creatures.json", JSON.stringify(creatureData))
+    res.redirect("/prehistoric_creatures")
 })
 
 // LISTEN TO PORT

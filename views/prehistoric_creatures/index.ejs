@@ -4,15 +4,15 @@
             <%= creature.type %> 
             <div>
                 <img src= <%= creature.img_url %>>
-            <!-- </div>
+            </div>
                 <div id="button-box">
-                    <form action="/dinosaurs/edit/<%= index %>">
+                    <form action="/prehistoric_creatures/edit/<%= index %>">
                         <input class="submit-button" type="submit" value="EDIT"/>
                     </form>
-                    <form method="POST" action="/dinosaurs/<%= index %>/?_method=DELETE">
+                    <form method="POST" action="/prehistoric_creatures/<%= index %>/?_method=DELETE">
                             <input class="submit-button" type="submit" value="DELETE"/>
                     </form>
-                </div> -->
+                </div>
         </li>
     <% }) %> 
 </ul>
