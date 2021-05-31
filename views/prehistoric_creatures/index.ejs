@@ -1,11 +1,11 @@
-<ul>
+<ul class="posts">
     <% creatureData.forEach((creature, index) => { %>
-        <li>
+        <li class="dataLi">
             <%= creature.type %>
             <img src="<%= creature.img_url %>" alt="">
-            <a href="/prehistoric_creatures/edit/<%= index %>">Edit creature</a>
+            <a class="bodyLinks" href="/prehistoric_creatures/edit/<%= index %>">Edit</a>
             <form method="POST" action="./<%= index %>/?_method=DELETE">
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="bodyLinks" />
             </form>
         </li>
     <% }) %>

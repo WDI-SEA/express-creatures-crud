@@ -1,10 +1,11 @@
-<ul>
+<ul class="posts">
     <% dinoData.forEach((dino, index) => { %>
-        <li>
+        <li class="dataLi">
             <%= dino.name %> is a <%= dino.type %>
-            <a href="/dinosaurs/edit/<%= index %>">Edit dino</a>
+            <br />
+            <a class="bodyLinks" href="/dinosaurs/edit/<%= index %>">Edit</a>
             <form method="POST" action="./<%= index %>/?_method=DELETE">
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="bodyLinks" />
             </form>
         </li>
     <% }) %>
