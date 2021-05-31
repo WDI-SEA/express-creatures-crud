@@ -1,0 +1,11 @@
+
+<div class="creature">
+    <ul>
+        <% prehistoricData.forEach((creature, index) => { %>
+            <li>
+                <h2><%= creature.type %></h2> <image src =" <%= creature.img_url%>" />
+                <a href="/prehistoric_creatures/edit/<%= index %>">Edit creature</a>
+            </li>
+        <% }) %>
+    </ul>
+</div>
