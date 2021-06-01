@@ -13,7 +13,7 @@ res.render('prehistoric_creatures.json', { prehistoricData })
 })
     
                 // GET /prehistoric_creatures/new -- READ (show) a form to add a dino
-router.get('/', (req, res) => {
+router.get('/new', (req, res) => {
     res.render('/prehistoric_creatures_new.ejs')
 })
 
@@ -67,9 +67,9 @@ router.put('/:id', (req, res) => {
 const prehistoric = fs.readFileSync('.prehistoric_creatures.json')
 const prehistoricData = JSON.parse(prehistoric)
 
-                    //find on dino from the req.params.id and us the req body to update
-                    prehistoricData[req.params.id].name = req.body.name
-                    prehistoricData[req.params.id].type = req.body.type
+                //find on dino from the req.params.id and us the req body to update
+                prehistoricData[req.params.id].img_url = prehistoric_cretures.data.img_url
+                prehistoricData[req.params.id].type = prehistoric_cretures.data.type
 
 // write the json file
 fs.writeFileSync('.prehistoric_creatures.json', JSON.stringify(prehistoricData))
