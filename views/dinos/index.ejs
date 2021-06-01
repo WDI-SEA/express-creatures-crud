@@ -1,16 +1,16 @@
 
-<div class="py-4"
+<!-- <div class="py-4"
   <form method="GET" action="/dinos">
     <label for="nameFilter">Filter by Name</label>
     <input id="nameFilter" type="text" name="nameFilter">
     <input type="submit">
   </form>
-</div>
+</div> -->
 
 
 
   <% dinoData.forEach((dino, index) => { %>
-  <div class="py-3">
+  <div class="py-4">
   <h3 class="d-inline-block text-capitalize"><%= dino.name %></h3> is a <h4 class="d-inline-block text-capitalize"><%= dino.type %></h4>
       <p>You can edit the dino <a href="/dinos/edit/<%= index %>"> here</a>. </p>
       <form method="POST" action="/dinos/<%= index %>/?_method=DELETE">

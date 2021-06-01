@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const fs = require('fs')
 
 // //controller for index
 // router.get('/index', (req, res) => {
@@ -21,7 +22,7 @@ const router = express.Router()
 // Creatures START *******************
 
 //GET /creatures -- READ all creatures
-router.get('/prehistoric-creatures', (req, res) => {
+router.get('/', (req, res) => {
   //read the creatures file
   const creatures = fs.readFileSync('./prehistoric_creatures.json')
   const creatureData = JSON.parse(creatures)
@@ -30,13 +31,13 @@ router.get('/prehistoric-creatures', (req, res) => {
 })
 
 //GET /creatures/new - READ (show) a form to add a creature
-router.get('/prehistoric-creatures/new', (req, res) => {
+router.get('/new', (req, res) => {
   // res.json({msg: 'show form to add dino' })
   res.render('prehistoric-creatures/new.ejs')
 })
 
 //POST -- CREATE a new creature -redirect to /creatures
-router.post('/prehistoric-creatures', (req, res) => {
+router.post('/', (req, res) => {
   //read creatures file 
   const creatures = fs.readFileSync('./prehistoric_creatures.json')
   const creatureData = JSON.parse(creatures)

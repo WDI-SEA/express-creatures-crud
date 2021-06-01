@@ -1,30 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const fs = require('fs')
 
-// //controller for index
-// router.get('/index', (req, res) => {
-//   // let favefoods = ['Boba', 'Fried Chicken Sandwich', 'Pizza']
-//   res.render('dinos/index.ejs')
-// })
 
-// //edit
-// router.get('/edit', (req, res) => { 
-//   // let faveAnimals = ['Dog', 'bird', 'Corgi'] 
-//   res.render('dinos/edit.ejs')
-// })
-    
-
-// router.get('/new', (req, res) => {
-//   // let faveAnimals = ['Dog', 'bird', 'Corgi'] 
-//   res.render('dinos/new.ejs')
-// })
-//define routes
-router.get('/', (req, res) => {
-  res.render('home')
-})
 
 //GET /dinos -- READ all dinos
-router.get('/dinos', (req, res) => {
+router.get('/', (req, res) => {
   //read the dino file
   const dinos = fs.readFileSync('./dinos.json')
   const dinoData = JSON.parse(dinos)
@@ -36,7 +17,7 @@ router.get('/dinos', (req, res) => {
 })
 
 //POST /dinos -- CREATE a new dino -redirect to /dinos
-router.post('/dinos', (req, res) => {
+router.post('/', (req, res) => {
   //read dino file 
   const dinos = fs.readFileSync('./dinos.json')
   const dinoData = JSON.parse(dinos)
@@ -55,13 +36,13 @@ fs.writeFileSync('./dinos.json', JSON.stringify(dinoData))
 
 
 //GET /dinos/new - READ (show) a form to add a dino
-router.get('/dinos/new', (req, res) => {
+router.get('/new', (req, res) => {
   // res.json({msg: 'show form to add dino' })
   res.render('dinos/new.ejs')
 })
 
 //GET /dinos/:id -- READ one specific dino
-router.get('/dinos/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   //get dino data
   const dinos = fs.readFileSync('./dinos.json')
   const dinoData = JSON.parse(dinos)
@@ -73,7 +54,7 @@ router.get('/dinos/:id', (req, res) => {
 })
 
 //GET /dinos/edit/:id -- READ (show) form to edit one dino
-router.get('/dinos/edit/:id', (req, res) => {
+router.get('/edit/:id', (req, res) => {
   //get the dino info to populate form
   const dinos = fs.readFileSync('./dinos.json')
   const dinoData = JSON.parse(dinos)
@@ -83,7 +64,7 @@ router.get('/dinos/edit/:id', (req, res) => {
 })
 
 //PUT /dino/:id -- UPDATE (edit) one dino -- redirect to /dinos/:
-router.put('/dinos/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   //get the dino date from json
 const dinos = fs.readFileSync('./dinos.json')
 const dinoData = JSON.parse(dinos)
@@ -102,7 +83,7 @@ res.redirect('/dinos')
 })
 
 //DELETE / dinos/:id -- DESTROY one specific dino
-router.delete('/dinos/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   //get our dino json
   const dinos = fs.readFileSync('./dinos.json')
   const dinoData = JSON.parse(dinos)
