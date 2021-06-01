@@ -5,7 +5,7 @@
             <img src="<%= creature.img_url %>" alt="">
             <a class="bodyLinks" href="/prehistoric_creatures/edit/<%= index %>">Edit</a>
             <form method="POST" action="./<%= index %>/?_method=DELETE">
-                <input type="submit" value="Delete" class="bodyLinks" />
+                <input type="submit" value="Delete" class="bodyLinks deleteBtn" />
             </form>
         </li>
     <% }) %>

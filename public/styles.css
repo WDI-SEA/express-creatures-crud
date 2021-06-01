@@ -88,6 +88,11 @@ img {
     cursor: pointer;
 }
 
+.deleteBtn:hover {
+    background-color: #FF0000;
+    cursor: pointer;
+}
+
 .bodyLinks:active {
     background-color: #111111;
 }
