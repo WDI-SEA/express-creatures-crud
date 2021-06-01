@@ -3,6 +3,10 @@
      <li>
         <%= dino.name %> is a <%= dino.type %>
         <a href='/dinosaurs/edit/<%= index %>'>Edit dino</a>
+
+        <form action='/dinosaurs/<%= index %>/?_method=DELETE' method='POST'>
+            <input type='submit' value="Delte Dino" />
+        </form>
     </li>
     <% }) %>
 </ul>
