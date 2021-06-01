@@ -25,8 +25,27 @@ app.get('/', (req, res) => {
 app.get('/prehistoric_creatures', (req, res) => {
   const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
   const preData = JSON.parse(prehistoric)
-  res.render('prehistoric/index.ejs', {preData})
+  res.render('prehistoric_creatures/index.ejs', {preData})
 })
+
+app.post('/prehistoric_creatures', (req, res) => {
+  const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+  const preData = JSON.parse(prehistoric)
+
+    console.log(req.body)
+
+  preData.push(req.body)
+
+  fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(preData))
+
+  res.redirect('/prehistoric_creatures')
+
+})
+
+app.get('/prehistoric_creatures/new', (req, res) => {
+  res.render('prehistoric_creatures/new.ejs')
+}) 
+
 
 // // GET /dinosaurs -- READ all dinos
 // app.get('/dinosaurs', (req, res) => {
