@@ -40,7 +40,8 @@ label {
     font-size: 30px;
 }
 nav {
-    background-image: none;
+    background-image:unset;
+    background-color:rgba(0, 0, 0, 0.4) ;
     font-size: 20px;
     display: flex;
     justify-content: space-between;
