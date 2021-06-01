@@ -42,7 +42,7 @@ app.post('/prehistoric_creatures', (req, res) => {
 })
 
 app.get('/prehistoric_creatures/new', (req, res) => {
-  res.render('prehistoric_creatures/new.ejs')
+  res.render('prehistoric_creatures/new')
 }) 
 
 // list info about one specific prehistoric creature
@@ -58,7 +58,7 @@ app.get('/prehistoric_creatures/:id', (req, res) => {
 })
 
 
-// GET /dinosaurs/edit/:id -- READ (show) form to edit one pre
+// show form to update prehistoric creature
 app.get('/prehistoric_creatures/edit/:id', (req, res) => {
   // get the pre info to populate the form
   const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
@@ -68,6 +68,24 @@ app.get('/prehistoric_creatures/edit/:id', (req, res) => {
   // render the template 
   res.render('prehistoric_creatures/edit.ejs', { pre: pre, preId: req.params.id})
 })
+
+// PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/:id
+app.put('/prehistoric_creatures/:id', (req, res) => {
+  // get the dino data from our json
+  const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+  const preData = JSON.parse(prehistoric)
+
+  // find on dino from the req.params.id and us the req body to update
+  preData[req.params.id].type = req.body.type
+  preData[req.params.id].url = req.body.url
+
+  // write the json file
+  fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(preData))
+
+  // redirect to /dinosaurs
+  res.redirect('/prehistoric_creatures')
+})
+
 
 
 // // GET /dinosaurs -- READ all dinos
