@@ -26,3 +26,9 @@ nav {
     padding: 10px; 
     font-size: 28px;
   }
+#hover {
+    font: #A9A9A9;
+}
+#hover:hover {
+    font: #00FFFF;
+}

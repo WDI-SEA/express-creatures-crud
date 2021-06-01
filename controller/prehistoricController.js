@@ -2,94 +2,98 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs')
 
-                // GET /dinosaurs -- READ all dinos
+                // GET /prehistoric_creatures -- READ all prehistoric creatures
 router.get('/', (req, res) => {
     // read dino file
-const dinosaurs = fs.readFileSync('./dinosaurs.json')
-const dinoData = JSON.parse(dinosaurs)
-console.log(dinoData)
+const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+const prehistoricData = JSON.parse(prehistoric)
+console.log(prehistoricData)
     // send back json
-res.render('dinosaurs/index.ejs', { dinoData })
+res.render('prehistoric_creatures.json', { prehistoricData })
+})
+    
+                // GET /prehistoric_creatures/new -- READ (show) a form to add a dino
+router.get('/', (req, res) => {
+    res.render('/prehistoric_creatures_new.ejs')
 })
 
-//                 // POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs
-// router.post('/', (req, res) => {
-//     // read dino dile
-// const dinosaurs = fs.readFileSync('./dinosaurs.json')
-// const dinoData = JSON.parse(dinosaurs)
 
-// console.log(req.body)
-//     // add data from the request body to the dino data
-// dinoData.push(req.body)
+                // POST /prehistoric_creatures -- CREATE a new creature -- redirect to /prehistoric_creatures
+router.post('/', (req, res) => {
+    // read prehistoric file
+const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+const prehistoricData = JSON.parse(prehistoric)
 
-//     // write file
-// fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+console.log(req.body)
+    // add data from the request body to the dino data
+prehistoricData.push(req.body)
 
-//     // redirect to /dinosaurs
-// res.redirect('/')
-// })
+    // write file
+fs.writeFileSync('.prehistoric_creatures.json', JSON.stringify(prehistoricData))
 
-//                 // GET /dinosaurs/new -- READ (show) a form to add a dino
-// router.get('/new', (req, res) => {
-// res.render('dinosaurs/new.ejs')
-// })
+    // redirect to /prehistoric_creatures
+res.redirect('/')
+})
 
-//                 // GET /dinosaurs/:id -- READ one specific dino
-// router.get('/:id', (req, res) => {
-//     // get our dinoData 
-// const dinosaurs = fs.readFileSync('./dinosaurs.json')
-// const dinoData = JSON.parse(dinosaurs)
 
-//     // lookup one dino with the request parameters
-// const dino = dinoData[req.params.id]
 
-//     // send one dino back
-// res.json({ dino })
-// })
+                // GET /prehistoric/:id -- READ one specific dino
+router.get('/:id', (req, res) => {
+    // get our prehistoricData 
+const prehistoric = fs.readFileSync('.prehistoric_creatures.json')
+const prehistoricData = JSON.parse(prehistoric)
 
-//             // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino
-// router.get('/edit/:id', (req, res) => {
-// // get the dino info to populate the form
-// const dinosaurs = fs.readFileSync('./dinosaurs.json')
-// const dinoData = JSON.parse(dinosaurs)
+    // lookup one creature with the request parameters
+const creature = prehistoricData[req.params.id]
 
-// const dino = dinoData[req.params.id]
-// //render the template
-// res.render('dinosaurs/edit.ejs', { dino: dino,  dinoId: req.params.id })
-// })
+    // send one dino back
+res.json({ creature })
+})
 
-// // PUT /dinosaurs/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/
-// router.put('/:id', (req, res) => {
-// // get the dino data from json
-// const dinosaurs = fs.readFileSync('./dinosaurs.json')
-// const dinoData = JSON.parse(dinosaurs)
+            // GET /prehistoric/edit/:id -- READ (show) form to edit one dino
+router.get('/edit/:id', (req, res) => {
+// get the creature info to populate the form
+const prehistoric = fs.readFileSync('.prehistoric_creatures.json')
+const prehistoricData = JSON.parse(prehistoric)
 
-// //find on dino from the req.params.id and us the req body to update
-// dinoData[req.params.id].name = req.body.name
-// dinoData[req.params.id].type = req.body.type
+const creature = prehistoricData[req.params.id]
+//render the template
+res.render('/prehistoric_creatures_edit.ejs', { creature: creature,  creatureId: req.params.id })
+})
 
-// // write the json file
-// fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+// PUT /prehistoric/:id -- UPDATE (edit) one dino -- redirect to /dinosaur/
+router.put('/:id', (req, res) => {
+// get the dino data from json
+const prehistoric = fs.readFileSync('.prehistoric_creatures.json')
+const prehistoricData = JSON.parse(prehistoric)
 
-// // redirect to /dinosaurs
-// res.redirect('/')
+                    //find on dino from the req.params.id and us the req body to update
+                    prehistoricData[req.params.id].name = req.body.name
+                    prehistoricData[req.params.id].type = req.body.type
 
-// })
-// // DELETE /dinosaur/:id -- DESTROY one specific dino
-// router.delete('/:id', (req, res) => {
-// // get our dino json
-// const dinosaurs = fs.readFileSync('./dinosaurs.json')
-// const dinoData = JSON.parse(dinosaurs)
+// write the json file
+fs.writeFileSync('.prehistoric_creatures.json', JSON.stringify(prehistoricData))
 
-// //remove one dino from the array -- use req.params
-// dinoData.splice(req.params.id, 1)
+// redirect to /prehistoric
+res.redirect('/')
 
-// //save dinosaurs.json
-// fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+})
 
-// // redirect to /dinosaurs
-// res.redirect('/')
+// DELETE /dinosaur/:id -- DESTROY one specific dino
+router.delete('/:id', (req, res) => {
+// get our dino json
+const prehistoric = fs.readFileSync('.prehistoric_creatures.json')
+const prehistoricData = JSON.parse(prehistoric)
 
-// })
+//remove one dino from the array -- use req.params
+prehistoricData.splice(req.params.id, 1)
 
-// module.exports = router;
+//save prehistoric.json
+fs.writeFileSync('.prehistoric_creatures.json', JSON.stringify(prehistoricData))
+
+// redirect to /prehistoric
+res.redirect('/')
+
+})
+
+module.exports = router;
