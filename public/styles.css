@@ -1,4 +1,28 @@
 * {
-    background-color: chartreuse;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+body {
+    background-image: url('https://www.thoughtco.com/thmb/lY664Q7KgaD1jGXwGcQa1L_iGiE=/1885x1414/smart/filters:no_upscale()/big-and-small-toy-dinosaurs-1138178966-347207c95a474f56acdaa7034e0eeb49.jpg');
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 100px;
+}
+
+nav {
+    padding-bottom: 100px;
+}
+#navbar {
+    display: inline;
+    float: left;
+    width: 25%;
     
 }
+#mainbar {
+    list-style-type: none;
+    margin: 10px;
+    padding: 10px; 
+    font-size: 28px;
+  }
