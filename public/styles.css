@@ -6,7 +6,10 @@
 }
 h1 {
     color:springgreen;
-    background-image: none;
+    background-image:unset;
+    display: flex;
+    justify-content: center;
+    background-color:rgba(0, 0, 0, 0.4) ;
     font-size: 30px;
 }
 ul {
