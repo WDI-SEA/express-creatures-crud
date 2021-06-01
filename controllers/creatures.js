@@ -45,17 +45,15 @@ router.put('/:id', (req, res) => {
     creatureData[req.params.id].type = req.body.type
     creatureData[req.params.id].img_url = req.body.img_url
 
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(creatureData))
+    fs.writeFileSync('./prehistoric_creatures/edit.ejs', JSON.stringify(creatureData))
     res.redirect('/creatures')
 })
 
 router.delete('/delete/:id', (req, res) => {
     const creatures = fs.readFileSync('./prehistoric_creatures.json')
     const creatureData = JSON.parse(creatures)
-
     creatureData.splice(req.params.id, 1)
-
-    fs.writeFileSync('./dinosaurs.json', JSON.stringify(creatureData))
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
     res.redirect('/creatures')
 })
 
