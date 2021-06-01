@@ -22,29 +22,52 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
+// lists all prehistoric creatures
 app.get('/prehistoric_creatures', (req, res) => {
   const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
   const preData = JSON.parse(prehistoric)
   res.render('prehistoric_creatures/index.ejs', {preData})
 })
 
+// shows a form to make a new prehistoric creature with GET and creates it with POST
 app.post('/prehistoric_creatures', (req, res) => {
   const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
   const preData = JSON.parse(prehistoric)
-
-    console.log(req.body)
 
   preData.push(req.body)
 
   fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(preData))
 
   res.redirect('/prehistoric_creatures')
-
 })
 
 app.get('/prehistoric_creatures/new', (req, res) => {
   res.render('prehistoric_creatures/new.ejs')
 }) 
+
+// list info about one specific prehistoric creature
+app.get('/prehistoric_creatures/:id', (req, res) => {
+  const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+  const preData = JSON.parse(prehistoric)
+
+  // look up one PC with the request parameters
+  const pre = preData[req.params.id]
+
+  // send one pre back
+  res.json({ pre })
+})
+
+
+// GET /dinosaurs/edit/:id -- READ (show) form to edit one pre
+app.get('/prehistoric_creatures/edit/:id', (req, res) => {
+  // get the pre info to populate the form
+  const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
+  const preData = JSON.parse(prehistoric)
+
+  const pre = preData[req.params.id]
+  // render the template 
+  res.render('prehistoric_creatures/edit.ejs', { pre: pre, preId: req.params.id})
+})
 
 
 // // GET /dinosaurs -- READ all dinos
