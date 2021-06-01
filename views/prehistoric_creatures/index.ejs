@@ -1,0 +1,12 @@
+<ul>
+    <% creatureData.forEach((creature, index) => { %>
+        <li>
+            <%= creature.type %>
+            <a href="/prehistoric_creatures/edit/<%= index %>">Edit Creature</a>
+
+            <form method="POST" action="/prehistoric_creatures/<%= index %>/?_method=DELETE">
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+    <% }) %>
+</ul>
