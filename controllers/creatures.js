@@ -2,24 +2,6 @@ const express = require('express')
 const router = express.Router()
 const fs = require('fs')
 
-// //controller for index
-// router.get('/index', (req, res) => {
-//   // let favefoods = ['Boba', 'Fried Chicken Sandwich', 'Pizza']
-//   res.render('creatures/index.ejs')
-// })
-
-// //edit
-// router.get('/edit', (req, res) => {
-//   // let faveAnimals = ['Dog', 'bird', 'Corgi'] 
-//   res.render('creatures/edit.ejs')
-// })
-
-
-// router.get('/new', (req, res) => {
-//   // let faveAnimals = ['Dog', 'bird', 'Corgi'] 
-//   res.render('creatures/new.ejs')
-// })
-// Creatures START *******************
 
 //GET /creatures -- READ all creatures
 router.get('/', (req, res) => {
@@ -56,7 +38,7 @@ fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
 
 
 //GET ///GET  -- READ one specific 
-router.get('/prehistoric-creatures/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   //get dino data
   const creatures = fs.readFileSync('./prehistoric_creatures.json')
   const creatureData = JSON.parse(creatures)
@@ -69,7 +51,7 @@ router.get('/prehistoric-creatures/:id', (req, res) => {
 
 
 //GET /creatures/edit/:id -- READ (show) form to edit one
-router.get('/prehistoric-creatures/edit/:id', (req, res) => {
+router.get('/edit/:id', (req, res) => {
 
   const creatures = fs.readFileSync('./prehistoric_creatures.json')
   const creatureData = JSON.parse(creatures)
@@ -79,7 +61,7 @@ router.get('/prehistoric-creatures/edit/:id', (req, res) => {
 })
 
 //PUT  -- UPDATE (edit) one  -- redirect to 
-router.put('/prehistoric-creatures/:id', (req, res) => {
+router.put('/:id', (req, res) => {
 
 const creatures = fs.readFileSync('./prehistoric_creatures.json')
 const creatureData = JSON.parse(creatures)
@@ -98,7 +80,7 @@ res.redirect('/prehistoric-creatures')
 })
 
 //DELETE - DESTROY one specific 
-router.delete('/prehistoric-creatures/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
 
   const creatures = fs.readFileSync('./prehistoric_creatures.json')
   const creatureData = JSON.parse(creatures)
