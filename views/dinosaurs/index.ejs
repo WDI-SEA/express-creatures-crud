@@ -2,8 +2,9 @@
 <ul>
     <% dinoData.forEach((dino, index) => { %>
         <li>
+            <img class="list-icon" src="https://i.pinimg.com/originals/3b/e4/6c/3be46c121d65aeccc1e25ce14b9dd4b3.png"/>
             <%= dino.name %> is a <%= dino.type %>.
-                <!-- <a id="edit-button" href="/dinosaurs/edit/<%= index %>">EDIT</a> -->
+            <img class="list-icon" src="https://i.pinimg.com/originals/3b/e4/6c/3be46c121d65aeccc1e25ce14b9dd4b3.png"/>
                 <div id="button-box">
                     <form action="/dinosaurs/dinosaurs/edit/<%= index %>">
                         <input class="submit-button" type="submit" value="EDIT"/>
