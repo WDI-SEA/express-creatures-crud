@@ -1,10 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
-const methodOverride = require('method-override')
-
-router.use(methodOverride('_method'))
-
 
 
 
@@ -18,8 +14,6 @@ router.get("/", (req , res) => {
 
 // GET show a form to make a NEW prehistoric READ
 router.get("/new", (req, res) => {
-    const creatures = fs.readFileSync("./prehistoric_creatures.json")
-    const creaturesData = JSON.parse(creatures)
     res.render("prehistoric_creatures/new.ejs")
 })
 
@@ -43,7 +37,7 @@ router.get("/:id", (req ,res) => {
 
     const creature = creaturesData[req.params.id]
 
-    res.render("prehistoric_creatures/index.ejs", {creaturesData, index:req.params.id})
+    res.json({creature})
 })
 
 // GET READ edit specific prehistoric creature using a form
@@ -83,11 +77,6 @@ router.delete("/:id", (req, res) => {
     // redirect to /dinosaurs
     res.redirect("/prehistoric_creatures")
 })
-
-
-
-
-
 
 
 
