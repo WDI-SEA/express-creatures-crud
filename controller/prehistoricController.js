@@ -9,12 +9,12 @@ const prehistoric = fs.readFileSync('./prehistoric_creatures.json')
 const prehistoricData = JSON.parse(prehistoric)
 console.log(prehistoricData)
     // send back json
-res.render('prehistoric_creatures.json', { prehistoricData })
+res.render('prehistoric/prehistoric_cretures.ejs', { prehistoricData })
 })
     
                 // GET /prehistoric_creatures/new -- READ (show) a form to add a dino
 router.get('/new', (req, res) => {
-    res.render('/prehistoric_creatures_new.ejs')
+    res.render('prehistoric/prehistoric_creatures_new.ejs')
 })
 
 
@@ -89,7 +89,7 @@ const prehistoricData = JSON.parse(prehistoric)
 prehistoricData.splice(req.params.id, 1)
 
 //save prehistoric.json
-fs.writeFileSync('.prehistoric_creatures.json', JSON.stringify(prehistoricData))
+fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(prehistoricData))
 
 // redirect to /prehistoric
 res.redirect('/')

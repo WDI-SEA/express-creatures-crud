@@ -1,14 +1,12 @@
 * {
-    /* text-align: center; */
     justify-content: center;
+    font-family: 'courier new', monospace;
 }
 
 body {
     background-image: url('https://www.thoughtco.com/thmb/lY664Q7KgaD1jGXwGcQa1L_iGiE=/1885x1414/smart/filters:no_upscale()/big-and-small-toy-dinosaurs-1138178966-347207c95a474f56acdaa7034e0eeb49.jpg');
-    /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
-    padding-left: 100px;
 }
 
 nav {
@@ -24,11 +22,32 @@ nav {
     list-style-type: none;
     margin: 10px;
     padding: 10px; 
-    font-size: 28px;
+    font-size: 22px;
+    text-align: center;
   }
 #hover {
     font: #A9A9A9;
 }
 #hover:hover {
     font: #00FFFF;
+}
+h1 {
+    color: lightslategray;
+    text-align: center;
+    font-size: 40px;
+}
+ul, form {
+    color: lightslategray;
+    margin-left: 280px;
+    font-size: 20px;
+    font-weight: bold;
+}
+img {
+    border-radius: 4px;
+    padding: 5px;
+    width: 354px;
+    height: 224px;
+    display: block;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
 }

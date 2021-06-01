@@ -18,7 +18,7 @@ app.use(layouts) // use ejs layouts
 //method overide so we can put and delete
 app.use(methodOverride('_method'))
 app.use('/dinosaurs', require('./controller/dinosaursController'))
-app.use('/prehistoric', require('./controller/prehistoricController'))
+app.use('/prehistoric_creatures', require('./controller/prehistoricController'))
 
 // define routes
 app.get('/', (req, res) => {
