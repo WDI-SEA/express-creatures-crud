@@ -1,0 +1,8 @@
+<ul>
+    <% creatureData.forEach((creature, index) => { %>
+    <li>
+        <%= creature.type %> <img src="<%= creature.img_url %>" alt ="<%= creature.type %>">
+      <!-- <a href="/dinosaurs/edit"></a> -->
+    </li>
+    <% }) %>
+  </ul>

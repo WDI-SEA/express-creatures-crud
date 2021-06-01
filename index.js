@@ -5,10 +5,16 @@ const app = express();
 const rowdyResults = rowdy.begin(app);
 const PORT = 3000;
 const fs = require("fs");
+const layouts = require('express-ejs-layouts')
+const methodOverride = require('method-override')
+app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public')) // where css will begin
+app.use(layouts) //use ejs layouts
+app.use(methodOverride('_method'))
 
 app.get("/", (req, res) => {
-  res.json({ msg: "hello dinos! 🦖" });
+  res.render('home')
 });
 
 // GET /dinosaurs -- READ all dinosaurs
@@ -18,8 +24,18 @@ app.get("/dinosaurs", (req, res) => {
   const dinoData = JSON.parse(dinosaurs);
   console.log(dinoData);
   // send back the json
-  res.json({ dinoData });
+  res.render('dinosaurs/index.ejs', { dinoData })
 });
+
+app.get("/prehistoric_creatures", (req, res) => {
+  const creatures = fs.readFileSync("./creatures.json")
+  const creatureData = JSON.parse(creatures)
+  console.log(creatureData)
+  res.render('creatures/index.ejs', {creatureData})
+})
+
+
+
 // POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs
 app.post("/dinosaurs", (req, res) => {
   const dinosaurs = fs.readFileSync("./dinosaurs.json");
@@ -28,6 +44,29 @@ app.post("/dinosaurs", (req, res) => {
   fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinoData));
   res.redirect("/dinosaurs");
 });
+
+app.get("/prehistoric_creatures/new")
+
+app.post("/prehistoric_creatures")
+
+app.get("/prehistoric_creatures/:id")
+
+app.get("/prehistoric_creatures/edit/:id")
+
+app.put("/prehistoric_creatures/:id")
+
+app.delete("/prehistoric_creatures:id")
+
+
+
+
+
+
+
+
+
+
+
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 app.get("/dinosaurs/new", (req, res) => {
