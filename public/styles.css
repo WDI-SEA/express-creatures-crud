@@ -119,6 +119,12 @@ img {
     transition-duration: 0.3s;
 }
 
+hr {
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 0 20px 0 20px;
+}
+
 #mammoth {
     margin-bottom: 45px;
 }
