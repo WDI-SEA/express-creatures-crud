@@ -1,0 +1,8 @@
+<ul>
+    <% creatureData.forEach((precrea, index) => { %>
+        <li>
+            <a href="/precrea/<%= index %>"><%= precrea.type %></a>
+            <a href="/precrea/edit/<%= index %>">Edit Creature</a>
+        </li>
+     <% }) %>
+</ul>

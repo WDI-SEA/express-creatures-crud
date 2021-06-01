@@ -1,0 +1,17 @@
+* {
+    background-color: lightcyan;
+    
+}
+
+img {
+    display: block;
+    height: 100px;
+    width: 150px;
+    object-fit: cover;
+    
+}
+
+nav li {
+    display: inline;
+    margin: 20px, 10px;
+}

@@ -1,0 +1,9 @@
+<form action="/precrea/<%= creatureID %>/?_method=PUT">
+    <label>Type</label>
+    <input type="text" value="<%= oneCreature.type %>" name="type" />
+
+    <label>Image</label>
+    <input type="url" value="<%= oneCreature.img_url %>" name="img_url" />
+
+    <input type="submit" />
+</form>

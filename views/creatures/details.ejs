@@ -1,0 +1,8 @@
+<p>
+    <%= oneCreature.type %>
+    <img src="<%= oneCreature.img_url %>" />
+    <form method="POST" action="/precrea/<%= creatureID %>/?_method=DELETE">
+        <input type="submit" value="Delete">
+    </form>
+
+</p>
