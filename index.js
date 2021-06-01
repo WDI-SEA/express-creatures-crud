@@ -70,7 +70,11 @@ app.delete("/prehistoric_creatures:id")
 
 // GET /dinosaurs/new -- READ (show) a form to add a dino
 app.get("/dinosaurs/new", (req, res) => {
-  res.json({ msg: "show form to add a dino" });
+  const dinosaurs = fs.readFileSync("./dinosaurs.json");
+  const dinoData = JSON.parse(dinosaurs);
+  dinoData.push(req.body);
+  fs.writeFileSync("./dinosaurs.json", JSON.stringify(dinoData));
+  res.redirect("/dinosaurs");
 });
 // GET /dinosaurs/edit/:id -- READ (show) form to edit one dino
 app.get("/dinosaurs/:id", (req, res) => {
