@@ -16,6 +16,7 @@ ul {
 }
 
 #sidebar {
+    z-index: 1;
     height: 100%;
     width: 0;
     top: 0;
@@ -24,6 +25,7 @@ ul {
     background-color: black;
     overflow-x: hidden;
     transition-duration: 0.5s;
+    white-space: nowrap;
 }
 
 #sidebar a {
@@ -50,7 +52,7 @@ ul {
     justify-content: center;
 }
 
-.submit-button {
+.new-button, .submit-button {
     margin: 5px;
     background-color: black;
     color: white;
@@ -62,9 +64,19 @@ ul {
     width: 70px;
 }
 
-.submit-button:hover {
+.new-button:hover, .submit-button:hover {
     opacity: 70%;
     transition-duration: 0.2s;
+}
+
+.new-button {
+    height: 30px;
+    width: 120px;
+    margin: 50px;
+}
+
+.new-form {
+    margin-top: 200px;
 }
 
 .text-field {
