@@ -10,7 +10,7 @@ exports.dino_index = function (req, res) {
  res.render('dinosaurs/index.ejs', {dinoData: dinoData})
 }
 
-// POST /dinosaurs -- CREATE a new PC -- redirect to /dinosaurs~~~~~~~~
+// POST /dinosaurs -- CREATE a new PC -- redirect to /dino~~~~~~~~
 exports.dino_create_post = function (req, res) {
   // read dino file
   const dinosaurs = fs.readFileSync('./dinosaurs.json')
@@ -37,7 +37,7 @@ exports.dino_create_get = function (req, res) {
     
 }
 
-exports.dino_update_get = function (req, res) {
+exports.dino_create_get = function (req, res) {
   res.render('dinosaurs/new.ejs')
 }
 

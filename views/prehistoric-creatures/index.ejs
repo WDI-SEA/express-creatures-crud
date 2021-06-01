@@ -3,9 +3,13 @@
       <li>
         <%= pc.type %>   
         <img src=<%= pc.img_url %> style="width:300px">
-
-        
         <a href="/prehistoric-creatures/edit/<%= index %>">Edit Prehistoric Creature</a>
+        
+
+      <form method="POST" action="/prehistoric-creatures/<%= index %>/?_method=DELETE">
+        <input type="submit" value="Delete">
+      </form>
+
       </li>
     <% }) %>
   </ul>

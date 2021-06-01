@@ -1,9 +1,5 @@
 [
   {
-    "name": "Cera",
-    "type": "triceratops"
-  },
-  {
     "name": "Ducky",
     "type": "saurolophus"
   },
@@ -20,15 +16,7 @@
     "type": "Purple Dino"
   },
   {
-    "type": "T-REX",
-    "name": "Ranger Rex"
-  },
-  {
     "type": "kInD of a CHAD ",
     "name": "Kenny"
-  },
-  {
-    "type": "Castaway Dinos",
-    "name": "Backyardigans"
   }
 ]
