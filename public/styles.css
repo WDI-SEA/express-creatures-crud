@@ -8,7 +8,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+a {
+    color:rgb(10, 226, 241);
+}
 nav {
     padding-bottom: 70px;
     font: #A9A9A9;
@@ -17,8 +19,6 @@ nav {
     display: inline;
     float: left;
     width: 20%;
-    font: #A9A9A9;
-    
 }
 #mainbar {
     list-style-type: none;
@@ -28,13 +28,10 @@ nav {
     text-align: center;
     font: #A9A9A9;
   }
-#hover {
-    font: #A9A9A9;
+#hover:hover {
+    color: #A9A9A9;
 }
-ul#navbar li a:hover {
-    background-color: rgb(10, 226, 241);
-    color: white;
-}
+
 h1 {
     color: lightslategray;
     text-align: center;
