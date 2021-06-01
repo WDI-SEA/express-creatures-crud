@@ -34,11 +34,11 @@ const dinoController = require('./controllers/dinosaurs');
 // GET /dinosaurs -- READ all dinos ~~~~~~~~~
 app.get('/dinosaurs', dinoController.dino_index)
 
-// POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs~~~~~~~~
-app.post('/dinosaurs', dinoController.dino_create_post)
-
 // GET /dinosaurs/new -- READ (show) a form to add a dino~~~~~~~~~~~~~
 app.get('/dinosaurs/new', dinoController.dino_create_get) 
+
+// POST /dinosaurs -- CREATE a new dino -- redirect to /dinosaurs~~~~~~~~
+app.post('/dinosaurs', dinoController.dino_create_post)
 
 // GET /dinosaurs/:id -- READ one specific dino~~~~~~~~~~
 app.get('/dinosaurs/:id', dinoController.dino_show_get_id)
