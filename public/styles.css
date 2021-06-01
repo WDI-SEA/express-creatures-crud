@@ -2,23 +2,17 @@
     background-color: white;
     text-align: center;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    /* background-image: url("https://static.vecteezy.com/system/resources/previews/000/140/893/non_2x/vector-dinosaur-footprint-pattern.jpg");
-    background-attachment: fixed; */
+}
+
+#main-title {
+    margin-top: 150px;
+    font-size: 40px;
 }
 
 ul {
     list-style-type: none;
     padding-left: 0;
     font-size: 18px;
-}
-
-#links {
-    text-align: left;
-    font-size: 14px;
-}
-
-#links:hover {
-    opacity: 70%;
 }
 
 #sidebar {
@@ -54,18 +48,18 @@ ul {
 #button-box {
     display: flex;
     justify-content: center;
-    margin: 10px;
 }
 
 .submit-button {
     margin: 5px;
     background-color: black;
     color: white;
-    border-radius: 10%;
+    border-radius: 8%;
+    border: 1px solid grey;
     font-size: 12px;
     font-weight: bold;
-    height: 25px;
-    width: 75px;
+    height: 20px;
+    width: 70px;
 }
 
 .submit-button:hover {
@@ -82,17 +76,32 @@ ul {
     height: 20px;
     color: rgb(117,117,117);
     transition-duration: 0.3s;
+    margin: 5px;
 }
 
 img {
-    max-width: 300px;
-    border: 5px solid white;
+    max-width: 350px;
+    border: 5px solid grey;
+    border-radius: 15%;
+    margin: 5px;
+}
+
+.home-image {
+    border: none;
+    max-height: 400px;
+    margin: 20px;
+    transition-duration: 0.2s;
+}
+
+.home-image:hover {
+    transform: scale(1.2);
+    transition-duration: 0.3s;
 }
 
 #open-button {
     display: flex;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     padding: 0;
     border: none;
     transition-duration: 0.5s;
@@ -103,24 +112,12 @@ img {
 }
 
 #button-icon {
-    height: 25px;
-    width: 25px;
+    height: 35px;
+    width: 35px;
     border: none;
 }
 
-
-/* #edit-button {
-    text-decoration: none;
-    padding: 1px 25px 1px 25px;
-    border-top: 2px solid rgb(118,118,118);
-    border-right: 2px solid rgb(33,33,33);
-    border-bottom: 2px solid rgb(33,33,33);
-    border-left: 2px solid rgb(118,118,118);
+li {
+    margin: 30px;
+    font-size: 20px;
 }
-
-#edit-button:active {
-    border-top: 2px solid rgb(33,33,33);
-    border-right: 2px solid rgb(118,118,118);
-    border-bottom: 2px solid rgb(118,118,118);
-    border-left: 2px solid rgb(33,33,33);
-} */
