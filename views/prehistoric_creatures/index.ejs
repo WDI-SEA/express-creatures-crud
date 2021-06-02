@@ -10,6 +10,12 @@
     <a class="edit" href="/prehistoric_creatures/edit/<%= index %>">
       ... Edit <%= prehistoric_creature.type %></a
     >
+    <form
+      method="POST"
+      action="/prehistoric_creatures/<%= index %>/?_method=DELETE"
+    >
+      <input type="submit" value="Delete Prehistoric Creatures" />
+    </form>
     <hr />
   </li>
   <% }) %>

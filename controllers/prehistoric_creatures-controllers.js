@@ -74,4 +74,23 @@ router.post('/prehistoric_creatures', (req, res) => {
   res.redirect('/prehistoric_creatures')
 })
 
+// DELETE /prehistoric_creatures/:id -- DESTROY one specific dino
+router.delete('/prehistoric_creatures/:id', (req, res) => {
+  // get our dino json
+  const prehistoric_creatures = fs.readFileSync('./prehistoric_creatures.json')
+  const prehistoric_creaturesData = JSON.parse(prehistoric_creatures)
+
+  // remove one dino from the array -- use req.params
+  prehistoric_creaturesData.splice(req.params.id, 1)
+
+  // save prehistoric_creatures.json
+  fs.writeFileSync(
+    './prehistoric_creatures.json',
+    JSON.stringify(prehistoric_creaturesData)
+  )
+
+  // redirect to /prehistoric_creatures
+  res.redirect('/prehistoric_creatures')
+})
+
 module.exports = router
