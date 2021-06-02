@@ -1,0 +1,12 @@
+<h2>Edit an existing Prehistoric Creature</h2>
+<form
+  method="POST"
+  action="/prehistoric_creatures/<%= prehistoric_creaturesId %>/?_method=PUT"
+>
+  <label>Type: </label>
+  <input type="text" value="<%= preHC.type %>" name="type" />
+  <br />
+  <label>Image URL: </label>
+  <input type="text" value="<%= preHC.img_url %>" name="img_url" />
+  <input type="submit" />
+</form>

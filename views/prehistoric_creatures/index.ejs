@@ -1,0 +1,16 @@
+<ul>
+  <% prehistoric_creaturesData.forEach((prehistoric_creature, index) =>{ %>
+  <li>
+    <%= prehistoric_creature.type %> <br />
+    <img
+      class="prehistoric_creaturesIMG"
+      src="<%= prehistoric_creature.img_url %>"
+    />
+    <br />
+    <a class="edit" href="/prehistoric_creatures/edit/<%= index %>">
+      ... Edit <%= prehistoric_creature.type %></a
+    >
+    <hr />
+  </li>
+  <% }) %>
+</ul>

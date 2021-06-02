@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creature Crud</title>
+    <link href="/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="header">
+        <h1>🦕 I LOVE CREATURES! 🐢</h1>
+        <hr />
+        <a href="/">CREATURES HOME</a>
+
+        <ul>
+          <!-- <li><a href="/">DINO HOME</a></li> -->
+          <li><a href="/dinosaurs">DINOS</a></li>
+          <li><a href="/dinosaurs/new">CREATE NEW DINOS</a></li>
+        </ul>
+
+        <ul>
+          <!-- <li><a href="/">PREHISTORIC CREATURES HOME</a></li> -->
+          <li><a href="/prehistoric_creatures">PREHISTORIC CREATURES</a></li>
+          <li>
+            <a href="/prehistoric_creatures/new"
+              >CREATE A NEW PREHISTORIC CREATURE</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <%- body %>
+    </div>
+  </body>
+</html>

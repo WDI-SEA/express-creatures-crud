@@ -1,0 +1,62 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Sigmar+One&display=swap');
+
+* {
+  background: #e9d8a6;
+  /* background: chartreuse; */
+  color: #ca6702;
+  font-family: 'Sigmar One', cursive;
+}
+
+.editDino {
+  /* font-weight: bold; */
+}
+
+body {
+}
+
+hr {
+  width: 70%;
+  text-align: center;
+  height: 2px;
+  border: 0px;
+  background-color: #ca6702;
+  margin-bottom: 5px;
+}
+
+ul,
+li {
+  font-size: 1.2rem;
+}
+
+.wrapper {
+  width: 600px;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+  display: block;
+}
+
+.header {
+}
+
+.header h1 {
+  font-size: 42px;
+  text-align: center;
+}
+
+a:hover {
+  color: #c9ab8e;
+}
+
+a:link {
+  /* background: tomato; */
+}
+
+.edit {
+  font-size: 0.8rem;
+}
+
+.prehistoric_creaturesIMG {
+  width: 350px;
+}
